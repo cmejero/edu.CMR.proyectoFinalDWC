@@ -1,0 +1,63 @@
+<div class="contenedor" >
+@if (instalacion) {
+  <mat-card appearance="outlined" style="margin: 1vw; background-color: #eeeeee; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6), 0px -4px 8px
+		rgba(0, 0, 0, 0.02);" >
+    <mat-card-header >
+      <mat-card-title>
+        <h2><u>NOMBRE:</u>  {{ instalacion.nombreInstalacion }}</h2>
+      </mat-card-title>
+      <mat-card-subtitle style="color: grey;">ID: {{ instalacion.idInstalacion }}</mat-card-subtitle>
+    </mat-card-header>
+
+
+    <mat-card-content >
+      <table class="instalacion-tabla" style="margin: 2vw;">
+        <tr>
+          <th>📧 Email</th>
+          <td>{{ instalacion.emailInstalacion }}</td>
+        </tr>
+        <tr>
+          <th>📞 Teléfono</th>
+          <td>{{ instalacion.telefonoInstalacion }}</td>
+        </tr>
+        <tr>
+          <th>📍 Dirección</th>
+          <td>{{ instalacion.direccionInstalacion }}</td>
+        </tr>
+        <tr>
+          <th>🏟️ Pista Principal</th>
+          <td>{{ instalacion.tipoCampo1 }}</td>
+        </tr>
+        <tr *ngIf="instalacion.tipoCampo2">
+          <th>🏟️ Pista Secundaria</th>
+          <td>{{ instalacion.tipoCampo2 }}</td>
+        </tr>
+        <tr *ngIf="instalacion.tipoCampo3">
+          <th>🏟️ Pista Adicional</th>
+          <td>{{ instalacion.tipoCampo3}}</td>
+        </tr>
+        <tr>
+          <th>🖼️ Imagen Instalación</th>
+          <td><img [src]="instalacion.imagenInstalacion" alt="Imagen Instalación" class="instalacion-imagen"></td>
+        </tr>
+        <tr>
+          <th>🛠️ Servicios</th>
+          <td>{{ instalacion.servicionInstalacion }}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button style="margin: 2vw; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.6), 5px 4px 8px
+		rgba(0, 0, 0, 0.2);" mat-raised-button color="primary" [routerLink]="['/altaInstalacion', instalacion.idInstalacion]">
+        ✏️ Editar Instalación
+      </button>
+
+      <button style="margin: 2vw; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.6), 5px 4px 8px
+		rgba(0, 0, 0, 0.2);" mat-raised-button color="warn" (click)="eliminarInstalacion()">
+        ❌ Eliminar Instalación
+      </button>
+    </mat-card-actions>
+  </mat-card>
+}
+</div>

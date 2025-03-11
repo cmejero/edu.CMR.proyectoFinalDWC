@@ -1,0 +1,121 @@
+<div class="container-fluid">
+<div class="row mt-5 mb-5"
+				id="instalacionContainer">
+				<div class="col-md-10 col-sm-10 mx-auto"
+					style="background-color: #dfead5; border-radius: 12px">
+					<h2 class="text-center mt-4 mb-5 pt-4"
+						style="font-size: 3.5vw; text-decoration: underline;">
+						<i>Formulario de Registro: Instalación</i>
+					</h2>
+					<div class="registrarFormulario">
+						<form action="#" method="POST">
+							<table class="tablaFormulario"
+								style="background-color: #d1d1d1; color: black; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6), 0px -4px 8px rgba(0, 0, 0, 0.15)">
+								<tbody>
+									<tr>
+										<td><label for="nombreInstalacion"
+											class="formularioLabel">Nombre de la Instalación</label> <input
+											type="text" class="form-control" id="nombreInstalacion"
+											name="nombreInstalacion" [(ngModel)]="instalacion.nombreInstalacion" required
+											style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+										</td>
+										<td><label for="direccionInstalacion"
+											class="formularioLabel">Dirección</label> <input type="text"
+											class="form-control" id="direccionInstalacion"
+											name="direccionInstalacion" [(ngModel)]="instalacion.direccionInstalacion" required
+											style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+										</td>
+									</tr>
+									<tr>
+										<td><label for="emailInstalacion" class="formularioLabel">Correo
+												Electrónico</label> <input type="email" class="form-control"
+											id="emailInstalacion" name="emailInstalacion" [(ngModel)]="instalacion.emailInstalacion" required
+											style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+										</td>
+										<td><label for="telefonoInstalacion"
+											class="formularioLabel">Teléfono</label> <input type="tel"
+											class="form-control" id="telefonoInstalacion"
+											name="telefonoInstalacion" [(ngModel)]="instalacion.telefonoInstalacion" required
+											style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+										</td>
+									</tr>
+									<tr>
+										<td><label for="passwordInstalacion"
+											class="formularioLabel">Contraseña</label> <input
+											type="password" class="form-control" id="passwordInstalacion"
+											name="passwordInstalacion" [(ngModel)]="instalacion.passwordInstalacion" required
+											style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+										</td>
+										<td><label for="repasswordInstalacion"
+											class="formularioLabel">Repetir Contraseña</label> <input type="password" class="form-control"
+                      id="repasswordInstalacion" name="repasswordInstalacion"
+                      [(ngModel)]="repasswordInstalacion" required
+                      style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+
+										</td>
+									</tr>
+									<tr>
+										<td><label for="tipoCampo1" class="formularioLabel">
+												Pista deportiva principal</label> <select class="form-select"
+											id="tipoCampo1" name="tipoCampo1" [(ngModel)]="instalacion.tipoCampo1" required
+											style="font-size: 1vw; border: 1px solid #818181;">
+												<option value="Futbol5">Fútbol 5</option>
+												<option value="Futbol7">Fútbol 7</option>
+												<option value="Futbol11">Fútbol 11</option>
+										</select></td>
+										<td><label for="tipoCampo2" class="formularioLabel">Pista
+												deportiva secundaria</label> <select class="form-select"
+											id="tipoCampo2" name="tipoCampo2" [(ngModel)]="instalacion.tipoCampo2"
+											style="font-size: 1vw; border: 1px solid #818181;">
+												<option value="">Ninguno</option>
+												<option value="Futbol5">Fútbol 5</option>
+												<option value="Futbol7">Fútbol 7</option>
+												<option value="Futbol11">Fútbol 11</option>
+										</select></td>
+									</tr>
+									<tr>
+										<td><label for="tipoCampo3" class="formularioLabel">Pista
+												deportiva adicional</label> <select class="form-select"
+											id="tipoCampo3" name="tipoCampo3" [(ngModel)]="instalacion.tipoCampo3"
+											style="font-size: 1vw; border: 1px solid #818181;">
+												<option value="">Ninguno</option>
+												<option value="Futbol5">Fútbol 5</option>
+												<option value="Futbol7">Fútbol 7</option>
+												<option value="Futbol11">Fútbol 11</option>
+										</select></td>
+										<td><label for="estadoInstalacion"
+											class="formularioLabel">Estado de la Instalación</label> <select
+											class="form-select" id="estadoInstalacion"
+											name="estadoInstalacion" [(ngModel)]="instalacion.estadoInstalacion" required
+											style="font-size: 1vw; border: 1px solid #818181;">
+												<option value="Activo">Activo</option>
+												<option value="Inactivo">Inactivo</option>
+										</select></td>
+									</tr>
+									<tr>
+										<td><label for="imagenInstalacion"
+											class="formularioLabel">Imagen de la Instalación</label> <input
+											type="file" class="form-control" id="imagenInstalacion"
+											name="imagenInstalacion" (change)="onFileSelected($event)"
+											style="font-size: 1vw; border: 1px solid #818181;"></td>
+
+										<td><label for="serviciosInstalacion"
+											class="formularioLabel">Servicios</label> <textarea
+												class="form-control" id="descripcion"
+												name="serviciosInstalacion" rows="3" [(ngModel)]="instalacion.servicionInstalacion"
+												style="font-size: 1vw; border: 1px solid #818181;"></textarea>
+										</td>
+									</tr>
+
+
+								</tbody>
+							</table>
+              <div class="text-center mt-4 mb-5">
+                <button *ngIf="id" mat-button (click)="modificarInstalacion()">Modificar</button>
+                <button *ngIf="!id" mat-button (click)="agregarInstalacion()">Registrar</button>
+              </div>
+						</form>
+					</div>
+				</div>
+			</div>
+    </div>

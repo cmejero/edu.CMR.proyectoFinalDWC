@@ -1,0 +1,47 @@
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 86%;
+
+}
+
+.instalacion-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+
+}
+
+.instalacion-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+
+}
+
+
+.instalacion-tabla td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  width: 60vh;
+
+}
+.instalacion-tabla th{
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  width: 30vh;
+}
+
+.instalacion-imagen {
+
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+
+}

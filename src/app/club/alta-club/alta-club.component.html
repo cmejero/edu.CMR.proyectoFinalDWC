@@ -1,0 +1,87 @@
+
+<div class="container-fluid  ">
+<div class="row mt-5 mb-5"  id="clubContainer">
+  <div class=" col-md-10 col-sm-10  mx-auto "
+    style="background-color: #dfead5; border-radius: 12px">
+    <h2 class=" text-center mt-4 mb-5 pt-4"
+      style="font-size: 3.5vw; text-decoration: underline;">
+      <i>Formulario de Registro: Club </i>
+    </h2>
+    <div class="registrarFormulario">
+      <form >
+        <table class="tablaFormulario "
+          style="background-color: #d8d8d8; color: black; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6), 0px -4px 8px rgba(0, 0, 0, 0.15)">
+          <tbody>
+            <tr>
+              <td><label for="nombreClub" class="formularioLabel">Nombre
+                  del Club</label> <input type="text"
+                style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
+                class="form-control" id="nombreClub" name="nombreClub" [(ngModel)]="club.nombreClub" required
+                required></td>
+              <td><label for="abreviaturaClub" class="formularioLabel">Abreviatura</label>
+                <input type="text"
+                style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
+                class="form-control" id="abreviaturaClub"
+                name="abreviaturaClub" [(ngModel)]="club.abreviaturaClub" required></td>
+            </tr>
+            <tr>
+              <td><label for="emailClub" class="formularioLabel">Correo
+                  Electrónico</label> <input type="email"
+                style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
+                class="form-control" id="emailClub" name="emailClub" [(ngModel)]="club.emailClub" required></td>
+
+              <td><label for="telefonoClub" class="formularioLabel">Teléfono</label>
+                <input type="tel"
+                style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
+                class="form-control" id="telefonoClub" name="telefonoClub"
+                [(ngModel)]="club.telefonoClub" required></td>
+            </tr>
+            <tr>
+              <td><label for="paisClub" class="formularioLabel">País</label>
+                <input type="text"
+                style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
+                class="form-control" id="paisClub" name="paisClub" [(ngModel)]="club.paisClub" required>
+              </td>
+              <td><label for="localidadClub" class="formularioLabel">Localidad</label>
+                <input type="text"
+                style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
+                class="form-control" id="localidadClub" name="localidadClub"
+                [(ngModel)]="club.localidadClub" required></td>
+            </tr>
+            <tr>
+              <td><label for="passwordClub" class="formularioLabel">Contraseña</label>
+                <input type="password"
+                style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
+                class="form-control" id="passwordClub" name="passwordClub" [(ngModel)]="club.passwordClub"
+                required></td>
+              <td><label for="repasswordClub" class="formularioLabel">Repetir
+                  Contraseña</label> <input type="password"
+                style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
+                class="form-control" id="repasswordClub"
+                name="repasswordClub" [(ngModel)]="club.passwordClub" required></td>
+            </tr>
+            <tr>
+              <td><label for="imagenClub" class="formularioLabel">Escudo
+                  del Club</label> <input type="file"
+                style="font-size: 1vw; border: 1px solid #818181;"
+                class="form-control" id="imagenClub" name="imagenClub" (change)="onFileSelected($event)">
+              </td>
+              <td><label for="descripcionClub" class="formularioLabel">Descripción</label>
+                <textarea class="form-control"
+                  style="font-size: 1vw; border: 1px solid #818181; border-bottom: 1px solid #818181;"
+                  id="descripcionClub" name="descripcionClub" [(ngModel)]="club.descripcionClub" rows="3"></textarea>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+        <div class="text-center mt-4 mb-5">
+          <button *ngIf="id" mat-button (click)="modificarClub()">Modificar</button>
+          <button *ngIf="!id" mat-button (click)="agregarClub()">Registrar</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+</div>

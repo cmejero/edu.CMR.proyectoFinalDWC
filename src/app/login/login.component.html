@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center align-items-center contenedor">
+  <div class="formularioInicioSesion" style="width: 100%; max-width: 28vw;">
+
+    <h2 class="text-center mb-4" style="text-decoration: underline; font-size:2.2vw">
+      <i>Iniciar Sesión</i>
+    </h2>
+
+    <!-- Formulario con validaciones -->
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+
+      <!-- Campo de correo -->
+      <div class="campoFormulario">
+        <label for="email">Correo Electrónico</label>
+        <input
+          matInput
+          [(ngModel)]="emailUser"
+          name="email"
+          #email="ngModel"
+          required
+          placeholder="Correo electrónico"
+          email
+        >
+        <mat-error *ngIf="email?.invalid && email?.touched">Correo inválido</mat-error>
+      </div>
+
+      <!-- Campo de contraseña -->
+      <div class="campoFormulario">
+        <label for="password">Contraseña</label>
+        <div class="contenedorContrasenia">
+          <input
+            matInput
+            [(ngModel)]="passwordUser"
+            name="password"
+            #password="ngModel"
+            required
+            placeholder="Contraseña"
+            [type]="passwordVisible ? 'text' : 'password'"
+            id="passwordInput"
+          >
+          <mat-error *ngIf="password?.invalid && password?.touched">Contraseña requerida</mat-error>
+          <button type="button" class="botonMostrarContrasenia" (click)="togglePassword()">👁️</button>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="recordarContrasenia">
+          <input type="checkbox" id="recordarSesion">
+          <label for="recordarSesion">Recordar sesión</label>
+        </div>
+        <a href="#" class="enlaceContraseniaOlvidada">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <div class="text-center mt-3">
+        <button mat-button type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
+      </div>
+
+      <!-- Mensaje de error -->
+      <mat-error *ngIf="!loginValido" class="mat-error">
+        {{ errorMessage }}
+      </mat-error>
+
+      <div class="enlaceRegistroGoogle">
+        ¿No tienes una cuenta?
+        <a href="https://accounts.google.com/lifecycle/steps/signup/name">Regístrate aquí</a>
+      </div>
+
+    </form>
+
+  </div>
+</div>

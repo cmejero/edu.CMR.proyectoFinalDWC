@@ -1,0 +1,62 @@
+
+.contenedor{
+  height: 82vh;
+}
+
+.contenido {
+	margin-left: 16.6667%;
+	/* El mismo ancho que el menú lateral para que el contenido no se solape */
+	padding: 7px;
+	/* Añadido para separar un poco el contenido de los bordes */
+}
+.tablaDatos {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #eafeea;
+	color: black;
+	font-size: 1.1 vw;
+	box-shadow: 0vw 0.4vw 0.8vw rgba(0, 0, 0, 0.3), 0vw -0.4vw 0.8vw
+		rgba(0, 0, 0, 0.15);
+	font-family: 'Open Sans', sans-serif;
+}
+.tablaDatos th, .tablaDatos td {
+	border: 0.11vw solid #aeaeae;
+	padding: 0.6vw;
+	text-align: center;
+}
+.tablaDatos th {
+	text-decoration: underline;
+	font-style: italic;
+	font-size: 1.4vw;
+	font-weight: bold;
+}
+
+.tablaDatos tr:nth-child(even) {
+	background-color: #e0fee0;
+}
+.botonEliminarAdmin {
+	border: 1px solid black;
+	height: 2vw;
+  margin-right: 1vw;
+}
+
+.botonEliminarAdmin:hover {
+	border: 1.5px solid red;
+}
+
+.botonEliminarAdmin:active {
+	border: 2px solid #d4af37;
+}
+
+.botonModificarAdmin {
+	border: 1px solid black;
+	height: 2vw;
+}
+
+.botonModificarAdmin:hover {
+	border: 1.5px solid orange;
+}
+
+.botonModificarAdmin:active {
+	border: 2px solid #d4af37;
+}

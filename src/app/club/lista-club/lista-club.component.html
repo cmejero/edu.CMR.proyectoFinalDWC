@@ -1,0 +1,33 @@
+<div class="container-fluid contenedor">
+  <div class="col-md-11 col-sm-11  mx-auto m-5" id="clubContainer">
+
+
+  <table class="tablaDatos">
+    <thead style="background-color: #2783b8;">
+      <tr>
+        <th style="border: 1.8px solid #0d6ba1; width: 10%">ID</th>
+        <th style="border: 1.8px solid #0d6ba1; width: 37.5%">NOMBRE CLUB</th>
+        <th style="border: 1.8px solid #0d6ba1; width: 37.5%">EMAIL CLUB</th>
+        <th style="border: 1.8px solid #0d6ba1; width: 15%">OPCIONES</th>
+      </tr>
+    </thead>
+    <tbody id="tablaCuerpo">
+      <tr *ngFor="let club of club">
+        <td>{{ club.idClub }}</td>
+        <td>{{ club.nombreClub }} </td>
+        <td>{{ club.emailClub }}</td>
+        <td>
+          <a mat-button class="botonDetalleAdmin" [routerLink]="['/detalleClub', club.idClub]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.8vw" height="1.8vw" fill="currentColor"
+              class="bi bi-eye-fill" style="color: blue; margin-bottom: 0.1vw" viewBox="0 0 16 16">
+              <path
+                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8Zm-8 4.5c-4.577 0-7.727-4.278-7.938-4.5C.273 8.278 3.423 4 8 4s7.727 4.278 7.938 4.5c-.21.222-3.36 4.5-7.938 4.5ZM8 5.5A2.5 2.5 0 1 0 8 10a2.5 2.5 0 0 0 0-5Zm0 1A1.5 1.5 0 1 1 8 9a1.5 1.5 0 0 1 0-3Z">
+              </path>
+            </svg>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>

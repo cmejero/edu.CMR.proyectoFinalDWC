@@ -1,0 +1,51 @@
+<div class="contenedor">
+  @if (usuario) {
+    <mat-card appearance="outlined" style="margin: 1vw; background-color: #eeeeee; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6), 0px -4px 8px rgba(0, 0, 0, 0.02);">
+      <mat-card-header>
+        <mat-card-title>
+          <h2><u>NOMBRE:</u> {{ usuario.nombreCompletoUsuario }}</h2>
+        </mat-card-title>
+        <mat-card-subtitle style="color: grey;">ID: {{ usuario.idUsuario }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <table class="usuario-tabla" style="margin: 2vw;">
+          <tr>
+            <th>📅 Fecha de Nacimiento</th>
+            <td>{{ usuario.fechaNacimientoUsuario }}</td>
+          </tr>
+          <tr>
+            <th>📧 Email</th>
+            <td>{{ usuario.emailUsuario }}</td>
+          </tr>
+          <tr>
+            <th>📞 Teléfono</th>
+            <td>{{ usuario.telefonoUsuario }}</td>
+          </tr>
+          <tr>
+            <th>📝 Descripción</th>
+            <td>{{ usuario.descripcionUsuario }}</td>
+          </tr>
+          <tr *ngIf="usuario.imagenUsuario">
+            <th>📸 Imagen</th>
+            <td>
+              <img [src]="usuario.imagenUsuario" alt="Imagen de usuario" class="usuario-imagen">
+            </td>
+          </tr>
+        </table>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button style="margin: 2vw; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.6), 5px 4px 8px rgba(0, 0, 0, 0.2);"
+          mat-raised-button color="primary" [routerLink]="['/altaUsuario', usuario.idUsuario]">
+          ✏️ Editar Usuario
+        </button>
+
+        <button style="margin: 2vw; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.6), 5px 4px 8px rgba(0, 0, 0, 0.2);"
+          mat-raised-button color="warn" (click)="eliminarUsuario()">
+          ❌ Eliminar Usuario
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  }
+</div>
