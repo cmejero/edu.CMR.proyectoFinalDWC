@@ -10,9 +10,11 @@ import { AltaInstalacionComponent } from './instalacion/alta-instalacion/alta-in
 import { ListaInstalacionComponent } from './instalacion/lista-instalacion/lista-instalacion.component';
 import { LoginComponent } from './login/login.component';
 import { loginGuard } from './guards/login.guard';
-import { ClubSesionComponent } from './club-sesion/club-sesion.component';
-import { InstalacionSesionComponent } from './instalacion-sesion/instalacion-sesion.component';
-import { UsuarioSesionComponent } from './usuario-sesion/usuario-sesion.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { InicioAdminComponent } from './inicio-admin/inicio-admin.component';
+import { InicioJugadorComponent } from './inicio-jugador/inicio-jugador.component';
+import { InicioClubComponent } from './inicio-club/inicio-club.component';
+
 
 export const routes: Routes = [
   // Rutas de detalle y alta para Usuario
@@ -23,27 +25,29 @@ export const routes: Routes = [
 
   // Rutas de detalle y alta para Club
   { path: 'detalleClub/:id', component: DetalleClubComponent, canActivate: [loginGuard], data: { requiredType: 'club' } },
-  { path: 'altaClub', component: AltaClubComponent, canActivate: [loginGuard], data: { requiredType: 'club' } },
+  { path: 'altaClub', component: AltaClubComponent},
   { path: 'altaClub/:id', component: AltaClubComponent, canActivate: [loginGuard], data: { requiredType: 'club' } },
-  { path: 'listaClub', component: ListaClubComponent, canActivate: [loginGuard], data: { requiredType: 'club' } },
+  { path: 'listaClub', component: ListaClubComponent },
 
   // Rutas de detalle y alta para Instalación
   { path: 'detalleInstalacion/:id', component: DetalleInstalacionComponent, canActivate: [loginGuard], data: { requiredType: 'instalacion' } },
-  { path: 'altaInstalacion', component: AltaInstalacionComponent, canActivate: [loginGuard], data: { requiredType: 'instalacion' } },
+  { path: 'altaInstalacion', component: AltaInstalacionComponent },
   { path: 'altaInstalacion/:id', component: AltaInstalacionComponent, canActivate: [loginGuard], data: { requiredType: 'instalacion' } },
-  { path: 'listaInstalacion', component: ListaInstalacionComponent, canActivate: [loginGuard], data: { requiredType: 'instalacion' } },
+  { path: 'listaInstalacion', component: ListaInstalacionComponent },
 
   // Ruta de administración (según sea necesario)
   { path: 'admin', loadChildren: () => import('./administracion/administracion.module').then(m => m.AdministracionModule), canActivate: [loginGuard], data: { requiredType: 'administrador' } },
 
   // Ruta para login
   { path: 'login', component: LoginComponent },
+  { path: 'landingPage', component: LandingPageComponent },
+  { path: 'inicioAdmin', component: InicioAdminComponent },
+  { path: 'inicioJugador', component: InicioJugadorComponent },
+  { path: 'inicioClub', component: InicioClubComponent },
 
   // Rutas para los diferentes dashboards basados en tipo de usuario
   { path: 'dashboard/administrador', component: ListaUsuarioComponent, canActivate: [loginGuard], data: { requiredType: 'administrador' } },
-  { path: 'dashboard/club', component: ClubSesionComponent, canActivate: [loginGuard], data: { requiredType: 'club' } },
-  { path: 'dashboard/usuario', component: UsuarioSesionComponent, canActivate: [loginGuard], data: { requiredType: 'usuario' } },
-  { path: 'dashboard/instalacion', component: InstalacionSesionComponent, canActivate: [loginGuard], data: { requiredType: 'instalacion' } },
+ 
 
   // Redirige a login por defecto si no hay una ruta válida
   { path: '**', redirectTo: 'login', pathMatch: 'full' }

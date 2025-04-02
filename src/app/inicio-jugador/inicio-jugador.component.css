@@ -1,0 +1,8 @@
+.imagenes{
+    width: 100vw;  /* 100% del ancho de la pantalla */
+    height: auto;  /* Mantiene la proporción */
+    display: block; /* Elimina espacios extra */
+    
+    margin: 1vw auto 1vw auto;
+    
+}

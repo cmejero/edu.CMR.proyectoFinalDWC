@@ -1,40 +1,45 @@
-<div class="row" style="height: 3vw">
-        <div class="col-md-2 col-sm-2 cabeceraAbajo" style="height: 100%; padding: 0;">
-          <button mat-button [matMenuTriggerFor]="menuInicio" class="letraCabeceraAbajo" style="font-size: 1.63vw; padding: 0; color: white;">INICIO</button>
-          <mat-menu #menuInicio="matMenu" style="font-size: 1.63vw;">
-            <button mat-menu-item [routerLink]="['/inicio']" style="font-size: 1.63vw; color: black; ">Inicio</button>
-          </mat-menu>
-        </div>
+<div class="row p-2 " style="background-color: #004000; height: 3vw;">
+  <!-- columnas con enlaces -->
+  <div class="col-md-2 col-sm-2 cabeceraAbajo" style="height: 100%; padding: 0; display: flex; align-items: center;">
+    <a [routerLink]="['inicioAdmin']" class="letraCabeceraAbajo">INICIO</a>
+  </div>
 
-        <div class="col-md-2 col-sm-2 cabeceraAbajo" style="height: 100%; padding: 0;">
-          <button mat-button [matMenuTriggerFor]="menuUsuarios" class="letraCabeceraAbajo" style="font-size: 1.63vw; padding: 0; color: white;">USUARIOS</button>
-          <mat-menu #menuUsuarios="matMenu" style="font-size: 1.63vw;">
-            <button mat-menu-item [routerLink]="['listaUsuario']" style="font-size: 1.63vw; color: black;">Listado de Usuarios</button>
-            <button mat-menu-item [routerLink]="['altaUsuario']" style="font-size: 1.63vw; color: black;">Nuevo Usuario</button>
-          </mat-menu>
-        </div>
+  <div class="col-md-2 col-sm-2 cabeceraAbajo" style="height: 100%; padding: 0; display: flex; align-items: center;">
+    <a [routerLink]="['listaUsuario']" class="letraCabeceraAbajo">USUARIOS</a>
+  </div>
 
-        <div class="col-md-3 col-sm-3 cabeceraAbajo" style="height: 100%; padding: 0;">
-          <button mat-button [matMenuTriggerFor]="menuInstalaciones" class="letraCabeceraAbajo" style="font-size: 1.63vw; padding: 0; color: white;">INSTALACIONES</button>
-          <mat-menu #menuInstalaciones="matMenu" style="font-size: 1.63vw;">
-            <button mat-menu-item [routerLink]="['/listaInstalacion']" style="font-size: 1.63vw; color: black;">Listado de Instalaciones</button>
-            <button mat-menu-item [routerLink]="['/altaInstalacion']" style="font-size: 1.63vw; color: black;">Nueva Instalación</button>
-          </mat-menu>
-        </div>
+  <div class="col-md-2 col-sm-2 cabeceraAbajo" style="height: 100%; padding: 0; display: flex; align-items: center;">
+    <a [routerLink]="['listaInstalacion']" class="letraCabeceraAbajo">INSTALACIONES</a>
+  </div>
 
-        <div class="col-md-2 col-sm-2 cabeceraAbajo" style="height: 100%; padding: 0;">
-          <button mat-button [matMenuTriggerFor]="menuClubes" class="letraCabeceraAbajo" style="font-size: 1.63vw; padding: 0; color: white;">CLUBES</button>
-          <mat-menu #menuClubes="matMenu" style="font-size: 1.63vw;">
-            <button mat-menu-item [routerLink]="['/listaClub']" style="font-size: 1.63vw; color: black;">Listado de Clubes</button>
-            <button mat-menu-item [routerLink]="['/altaClub']" style="font-size: 1.63vw; color: black;">Nuevo Club</button>
-          </mat-menu>
-        </div>
+  <div class="col-md-2 col-sm-2 cabeceraAbajo" style="height: 100%; padding: 0; display: flex; align-items: center;">
+    <a [routerLink]="['listaClub']" class="letraCabeceraAbajo">CLUBES</a>
+  </div>
 
-        <div class="col-md-2 col-sm-2 cabeceraAbajo" style="height: 100%; padding: 0;">
-          <button mat-button [matMenuTriggerFor]="menuArbitros" class="letraCabeceraAbajo" style="font-size: 1.63vw; padding: 0; color: white;">ARBITROS</button>
-          <mat-menu #menuArbitros="matMenu" style="font-size: 1.63vw;">
-            <button mat-menu-item [routerLink]="['/listadoArbitros']" style="font-size: 1.63vw; color: black;">Listado de Árbitros</button>
-            <button mat-menu-item [routerLink]="['/altaArbitro']" style="font-size: 1.63vw; color: black;">Nuevo Árbitro</button>
-          </mat-menu>
-        </div>
+  <div class="col-md-2 col-sm-2 cabeceraAbajo" style="height: 100%; padding: 0; display: flex; align-items: center;">
+    <a class="letraCabeceraAbajo">ARBITROS</a>
+  </div>
+
+  <!-- botón con submenú -->
+<div class="col-sm-2 col-md-2 cabeceraAbajo mt-2" style="display: flex; align-items: center;">
+  <button mat-button [matMenuTriggerFor]="menuOpciones"
+    style="background-color: #004000; width: 4vw; height: 2.3vw; border-radius: 5px; display: flex; justify-content: center; align-items: center; padding: 0; border: 1px solid white;">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+      class="bi bi-list letraCabeceraAbajo" viewBox="0 0 16 16"
+      style="width: 3vw; height: 2.2vw; color: white;">
+      <path fill-rule="evenodd"
+        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+    </svg>
+  </button>
+
+  <mat-menu #menuOpciones="matMenu"
+    style="min-width: 12vw; font-size: 1.2vw; background-color: #003300; border-radius: 5px;">
+    <button mat-menu-item (click)="cambiarIdioma()" style="color: #003300;">Idioma</button>
+    <button mat-menu-item (click)="mostrarAyuda()" style="color: #003300;">Ayuda</button>
+    <button mat-menu-item (click)="configuracion()" style="color: #003300;">Configuración</button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="cerrarSesion()" style="color: #003300;">Cerrar sesión</button>
+  </mat-menu>
+</div>
+
 </div>
