@@ -64,7 +64,6 @@ export class AltaClubComponent {
       this.apiService.createClub(this.club).subscribe({
         next: (response) => {
           this._snackBar.open('Club creado correctamente', 'Ok');
-          this.router.navigate(['/listaClub']);
         },
         error: (error) => {
           console.error('Error al crear club:', error);

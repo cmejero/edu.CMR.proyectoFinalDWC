@@ -69,13 +69,16 @@ export class LoginComponent {
         // Redirigir según el tipo de usuario
         switch (tipoUsuario) {
           case 'usuario':
-            this.router.navigate(['/listaUsuario']);
+            this.router.navigate(['/inicioUsuario']);
             break;
           case 'club':
-            this.router.navigate(['/listaClub']);
+            this.router.navigate(['/inicioClub']);
             break;
           case 'instalacion':
-            this.router.navigate(['/listaInstalacion']);
+            this.router.navigate(['/inicioInstalacion']);
+            break;
+            case 'administrador':
+            this.router.navigate(['/inicioAdmin']);
             break;
           default:
             console.warn('⚠ Tipo de usuario desconocido:', tipoUsuario);

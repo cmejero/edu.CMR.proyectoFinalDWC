@@ -14,6 +14,11 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { InicioAdminComponent } from './inicio-admin/inicio-admin.component';
 import { InicioJugadorComponent } from './inicio-jugador/inicio-jugador.component';
 import { InicioClubComponent } from './inicio-club/inicio-club.component';
+import { MenuInicioComponent } from './menu/menu-inicio/menu-inicio.component';
+import { MenuJugadorComponent } from './menu/menu-jugador/menu-jugador.component';
+import { MenuAdminComponent } from './menu/menu-admin/menu-admin.component';
+import { MenuClubComponent } from './menu/menu-club/menu-club.component';
+import { MenuInstalacionComponent } from './menu/menu-instalacion/menu-instalacion.component';
 
 
 export const routes: Routes = [
@@ -40,6 +45,8 @@ export const routes: Routes = [
 
   // Ruta para login
   { path: 'login', component: LoginComponent },
+
+
   { path: 'landingPage', component: LandingPageComponent },
   { path: 'inicioAdmin', component: InicioAdminComponent },
   { path: 'inicioJugador', component: InicioJugadorComponent },
@@ -47,7 +54,15 @@ export const routes: Routes = [
 
   // Rutas para los diferentes dashboards basados en tipo de usuario
   { path: 'dashboard/administrador', component: ListaUsuarioComponent, canActivate: [loginGuard], data: { requiredType: 'administrador' } },
- 
+
+  // Rutas para los menus de la cabecera
+
+  { path: 'menuInicio', component: MenuInicioComponent },
+  { path: 'menuJugador', component: MenuJugadorComponent },
+  { path: 'menuAdmin', component: MenuAdminComponent },
+  { path: 'menuClub', component: MenuClubComponent },
+  { path: 'menuInstalacion', component: MenuInstalacionComponent },
+
 
   // Redirige a login por defecto si no hay una ruta válida
   { path: '**', redirectTo: 'login', pathMatch: 'full' }

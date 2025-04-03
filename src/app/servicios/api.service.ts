@@ -22,7 +22,7 @@ export class ApiService {
 
   // Ya no es necesario inyectar Auth aquí manualmente
   constructor(private http: HttpClient, private router: Router, private auth: Auth) {
-    this.user$ = user(this.auth); 
+    this.user$ = user(this.auth);
   }
 
   // Métodos de autenticación
@@ -32,9 +32,20 @@ export class ApiService {
   }
 
 
-  async logout() {
-    await signOut(this.auth);
-    this.router.navigate(['/login']);
+  logout() {
+    // Eliminar el token de localStorage o sessionStorage
+    localStorage.removeItem('auth_token');  // Si usas localStorage
+
+    // Realizar una solicitud para invalidar la sesión en el backend
+    this.http.delete(`${this.apiUrl}/logout`).subscribe(
+      response => {
+        console.log('Sesión cerrada');
+        // Redirigir al usuario a la página de login, por ejemplo
+      },
+      error => {
+        console.error('Error al cerrar sesión', error);
+      }
+    );
   }
 
 
