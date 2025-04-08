@@ -19,6 +19,9 @@ export class AltaClubComponent {
   private _snackBar = inject(MatSnackBar);
   private router = inject(Router);
 
+  password = '';
+  passwordRepetida= '';
+
   club: Club = {
     nombreClub: '',
     abreviaturaClub: '',
@@ -59,24 +62,46 @@ export class AltaClubComponent {
     });
   }
 
-  agregarClub() {
-    if (this.club.nombreClub && this.club.emailClub && this.club.passwordClub && this.club.telefonoClub && this.club.abreviaturaClub) {
-      this.apiService.createClub(this.club).subscribe({
-        next: (response) => {
-          this._snackBar.open('Club creado correctamente', 'Ok');
-        },
-        error: (error) => {
-          console.error('Error al crear club:', error);
-          this._snackBar.open('No se pudo crear el club', 'Cerrar');
-        }
-      });
-    } else {
-      this._snackBar.open('Debe rellenar el formulario', 'Cerrar');
-    }
+ // Método que compara las contraseñas
+ compararContrasenas(): boolean {
+  if (this.password !== this.passwordRepetida) {
+    this._snackBar.open('Las contraseñas no coinciden', 'Cerrar');
+    return false;
+  }
+  return true;
+}
+
+agregarClub() {
+  // Primero, asigna el valor de la contraseña al club
+  this.club.passwordClub = this.password;
+
+  // Asignar la fecha de creación (actual) al club
+  this.club.fechaCreacionClub = new Date().toString(); 
+
+  // Verificar si todos los campos obligatorios están llenos
+  if (!this.club.nombreClub || !this.club.emailClub || !this.club.passwordClub || !this.club.telefonoClub || !this.club.abreviaturaClub || !this.club.localidadClub || !this.club.paisClub) {
+    this._snackBar.open('Debe rellenar todo el formulario', 'Cerrar');
+    return;
   }
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    this.club.logoClub = file;
+  // Luego, comprobar si las contraseñas coinciden
+  if (this.compararContrasenas()) {
+    // Si las contraseñas coinciden, realizar la creación del club
+    this.apiService.createClub(this.club).subscribe({
+      next: (response) => {
+        this._snackBar.open('Club creado correctamente', 'Ok');
+      },
+      error: (error) => {
+        console.error('Error al crear club:', error);
+        this._snackBar.open('No se pudo crear el club', 'Cerrar');
+      }
+    });
   }
+}
+
+
+onFileSelected(event: any) {
+  const file = event.target.files[0];
+  this.club.logoClub = file;
+}
 }

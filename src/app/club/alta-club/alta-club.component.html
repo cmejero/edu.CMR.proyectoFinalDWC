@@ -52,19 +52,19 @@
               <td><label for="passwordClub" class="formularioLabel">Contraseña</label>
                 <input type="password"
                 style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
-                class="form-control" id="passwordClub" name="passwordClub" [(ngModel)]="club.passwordClub"
+                class="form-control" id="passwordClub" name="passwordClub" [(ngModel)]="password"
                 required></td>
               <td><label for="repasswordClub" class="formularioLabel">Repetir
                   Contraseña</label> <input type="password"
                 style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
                 class="form-control" id="repasswordClub"
-                name="repasswordClub" [(ngModel)]="club.passwordClub" required></td>
+                name="repasswordClub" [(ngModel)]="passwordRepetida" required></td>
             </tr>
             <tr>
               <td><label for="imagenClub" class="formularioLabel">Escudo
                   del Club</label> <input type="file"
                 style="font-size: 1vw; border: 1px solid #818181;"
-                class="form-control" id="imagenClub" name="imagenClub" (change)="onFileSelected($event)">
+                class="form-control" id="imagenClub" name="imagenClub" [(ngModel)]="club.logoClub" (change)="onFileSelected($event)">
               </td>
               <td><label for="descripcionClub" class="formularioLabel">Descripción</label>
                 <textarea class="form-control"

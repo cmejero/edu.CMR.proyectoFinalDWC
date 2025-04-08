@@ -9,6 +9,9 @@ import { MenuClubComponent } from "./menu-club/menu-club.component";
 import { MenuInicioComponent } from "./menu-inicio/menu-inicio.component";
 import { MenuInstalacionComponent } from "./menu-instalacion/menu-instalacion.component";
 import { CommonModule, NgIf } from '@angular/common';
+import { DatosLoginService } from '../servicios/datos-login.service';
+import { ApiService } from '../servicios/api.service';
+
 
 @Component({
   selector: 'app-menu',
@@ -23,16 +26,20 @@ import { CommonModule, NgIf } from '@angular/common';
 })
 export class MenuComponent {
   router = inject(Router);
-  tipoUsuario: string | null = localStorage.getItem('userType'); // Obtener tipo de usuario
+  datosLogin = inject(DatosLoginService);
+  tipoUsuario = this.datosLogin.tipoUsuario;
+  apiService = inject(ApiService);
 
   constructor() {
     this.redirigirSegunUsuario();
   }
 
   redirigirSegunUsuario(): void {
+    this.datosLogin.getTipoUsuario().subscribe(tipo => {
+      this.tipoUsuario = tipo;
     switch (this.tipoUsuario) {
-      case 'usuario':
-        this.router.navigate(['/menuUsuario']);
+      case 'jugador':
+        this.router.navigate(['/menuJugador']);
         break;
       case 'club':
         this.router.navigate(['/menuClub']);
@@ -47,5 +54,10 @@ export class MenuComponent {
         console.warn('⚠ Tipo de usuario desconocido:', this.tipoUsuario);
         this.router.navigate(['/login']); // Si no es válido, redirige al login
     }
+  });
   }
+
+
+
 }
+

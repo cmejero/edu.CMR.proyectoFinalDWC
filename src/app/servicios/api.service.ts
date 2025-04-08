@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {  Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { Auth, signOut, user, User } from '@angular/fire/auth';
 import { Usuario } from '../shared/modelos/usuario';
 import { Club } from '../shared/modelos/club';
 import { Instalacion } from '../shared/modelos/instalacion';
+import { DatosLoginService } from './datos-login.service';
 
 
 @Injectable({
@@ -19,6 +20,7 @@ export class ApiService {
   club!: Club;
   instalacion!: Instalacion;
   user$: Observable<User | null>;
+  datosLogin = inject(DatosLoginService);
 
   // Ya no es necesario inyectar Auth aquí manualmente
   constructor(private http: HttpClient, private router: Router, private auth: Auth) {
@@ -32,15 +34,20 @@ export class ApiService {
   }
 
 
-  logout() {
-    // Eliminar el token de localStorage o sessionStorage
-    localStorage.removeItem('auth_token');  // Si usas localStorage
+  logout(): void {
+    // Eliminar el token de localStorage
+    localStorage.removeItem('auth_token');  // O sessionStorage si lo usas
 
     // Realizar una solicitud para invalidar la sesión en el backend
     this.http.delete(`${this.apiUrl}/logout`).subscribe(
       response => {
         console.log('Sesión cerrada');
-        // Redirigir al usuario a la página de login, por ejemplo
+
+        // Limpiar el estado reactivo de sesión
+        this.datosLogin.cerrarSesion();
+
+        // Redirigir al usuario a la página de login
+        this.router.navigate(['/login']);
       },
       error => {
         console.error('Error al cerrar sesión', error);

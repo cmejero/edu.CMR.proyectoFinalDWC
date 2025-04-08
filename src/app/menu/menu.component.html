@@ -216,19 +216,22 @@
 
 
             <div class="col-sm-12 col-md-12">
-              <ng-container *ngIf="tipoUsuario === 'Usuario'">
+              <ng-container *ngIf="tipoUsuario === 'jugador'">
                 <app-menu-jugador></app-menu-jugador>
               </ng-container>
 
-
+              <ng-container *ngIf="tipoUsuario === 'administrador'">
                 <app-menu-admin></app-menu-admin>
-              
+              </ng-container>
 
-              <ng-container *ngIf="tipoUsuario === 'Club'">
+
+
+
+              <ng-container *ngIf="tipoUsuario === 'club'">
                 <app-menu-club></app-menu-club>
               </ng-container>
 
-              <ng-container *ngIf="tipoUsuario === 'Instalacion'">
+              <ng-container *ngIf="tipoUsuario === 'instalacion'">
                 <app-menu-instalacion></app-menu-instalacion>
               </ng-container>
 

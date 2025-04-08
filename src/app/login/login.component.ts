@@ -1,3 +1,4 @@
+
 import { Component, inject } from '@angular/core';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
@@ -7,6 +8,8 @@ import { NgIf } from '@angular/common';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { ApiService } from '../servicios/api.service';
+import { DatosLoginService } from '../servicios/datos-login.service';
+
 
 @Component({
   selector: 'app-login',
@@ -21,7 +24,8 @@ import { ApiService } from '../servicios/api.service';
     MatLabel,
     NgIf,
     MatInput,
-    MatButton
+    MatButton,
+
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
@@ -29,6 +33,8 @@ import { ApiService } from '../servicios/api.service';
 export class LoginComponent {
 
   apiService = inject(ApiService);
+  datosLogin = inject(DatosLoginService);
+
   router = inject(Router);
 
 
@@ -60,16 +66,19 @@ export class LoginComponent {
       (response) => {
         console.log('✅ Respuesta del servidor:', response);  // Log para ver la respuesta del servidor
 
-        // Verificamos que response.tipoUsuario sea una cadena de texto, no un objeto
         const tipoUsuario = typeof response.tipoUsuario === 'string' ? response.tipoUsuario : '';
 
+ // Guardar en el SesionService
+ this.datosLogin.setToken(response.token);
+ this.datosLogin.setTipoUsuario(tipoUsuario);
+ this.datosLogin.setDatosUsuario(response.datosUsuario);
         // Guardamos el tipo de usuario en localStorage
         localStorage.setItem('userType', tipoUsuario);
 
         // Redirigir según el tipo de usuario
         switch (tipoUsuario) {
-          case 'usuario':
-            this.router.navigate(['/inicioUsuario']);
+          case 'jugador':
+            this.router.navigate(['/inicioJugador']);
             break;
           case 'club':
             this.router.navigate(['/inicioClub']);
