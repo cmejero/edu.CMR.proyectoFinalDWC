@@ -1,55 +1,62 @@
 <div class="contenedor">
   @if (club) {
-    <mat-card appearance="outlined" style="margin: 1vw; background-color: #eeeeee; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6), 0px -4px 8px rgba(0, 0, 0, 0.02);">
-      <mat-card-header>
-        <mat-card-title>
-          <h2><u>NOMBRE:</u> {{ club.nombreClub }}</h2>
-        </mat-card-title>
-        <mat-card-subtitle style="color: grey;">ID: {{ club.idClub }}</mat-card-subtitle>
+    <mat-card appearance="outlined" style="margin: 2vw; background-color: #f8f8f8; border-radius: 8px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2), 0px -4px 12px rgba(0, 0, 0, 0.1);">
+      <mat-card-header style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; flex: 1; justify-content: flex-start;">
+          <div *ngIf="club.logoClub" style="border-radius: 50%; overflow: hidden; width: 60px; height: 60px; margin-right: 15px;">
+            <img [src]="'data:image/jpeg;base64,' + club.logoClub" alt="Escudo del club" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+        </div>
+
+        <div style="text-align: center; flex: 3;">
+          <mat-card-title>
+            <h2 style="font-weight: bold; font-size: 1.8em; color: #333333; margin: 0;"><u>NOMBRE:</u> {{ club.nombreClub }}</h2>
+          </mat-card-title>
+        </div>
+
+        <div style="flex: 1; text-align: right;">
+          <mat-card-subtitle style="font-size: 1.6em; color: #888888; font-weight: bold; margin-left: 20px;">
+            ID: <span style="font-size: 1.6em; color: #333333;">{{ club.idClub }}</span>
+          </mat-card-subtitle>
+        </div>
       </mat-card-header>
 
-      <mat-card-content>
-        <table class="club-tabla" style="margin: 2vw;">
+      <mat-card-content style="padding: 2vw 3vw;">
+        <table class="club-tabla" style="width: 100%; margin-top: 1vw; border-collapse: collapse;">
           <tr>
-            <th>🔠 Abreviatura</th>
-            <td>{{ club.abreviaturaClub }}</td>
+            <th style="text-align: left; padding-bottom: 10px; color: #555555;">🔠 Abreviatura</th>
+            <td style="padding-bottom: 10px; color: #444444;">{{ club.abreviaturaClub }}</td>
           </tr>
           <tr>
-            <th>📧 Email</th>
-            <td>{{ club.emailClub }}</td>
+            <th style="text-align: left; padding-bottom: 10px; color: #555555;">📧 Email</th>
+            <td style="padding-bottom: 10px; color: #444444;">{{ club.emailClub }}</td>
           </tr>
           <tr>
-            <th>📞 Teléfono</th>
-            <td>{{ club.telefonoClub }}</td>
+            <th style="text-align: left; padding-bottom: 10px; color: #555555;">📞 Teléfono</th>
+            <td style="padding-bottom: 10px; color: #444444;">{{ club.telefonoClub }}</td>
           </tr>
           <tr>
-            <th>🌍 País</th>
-            <td>{{ club.paisClub }}</td>
+            <th style="text-align: left; padding-bottom: 10px; color: #555555;">🌍 País</th>
+            <td style="padding-bottom: 10px; color: #444444;">{{ club.paisClub }}</td>
           </tr>
           <tr>
-            <th>📍 Localidad</th>
-            <td>{{ club.localidadClub }}</td>
+            <th style="text-align: left; padding-bottom: 10px; color: #555555;">📍 Localidad</th>
+            <td style="padding-bottom: 10px; color: #444444;">{{ club.localidadClub }}</td>
           </tr>
           <tr>
-            <th>📝 Descripción</th>
-            <td>{{ club.descripcionClub }}</td>
-          </tr>
-          <tr *ngIf="club.logoClub">
-            <th>📸 Escudo</th>
-            <td>
-              <img [src]="club.logoClub" alt="Escudo del club" class="club-imagen">
-            </td>
+            <th style="text-align: left; padding-bottom: 10px; color: #555555;">📝 Descripción</th>
+            <td style="padding-bottom: 10px; color: #444444;">{{ club.descripcionClub }}</td>
           </tr>
         </table>
       </mat-card-content>
 
-      <mat-card-actions align="end">
-        <button style="margin: 2vw; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.6), 5px 4px 8px rgba(0, 0, 0, 0.2);"
+      <mat-card-actions style="padding: 1.5vw 2vw; display: flex; justify-content: flex-end;">
+        <button style="margin-right: 15px; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);"
           mat-raised-button color="primary" [routerLink]="['/altaClub', club.idClub]">
           ✏️ Editar Club
         </button>
 
-        <button style="margin: 2vw; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.6), 5px 4px 8px rgba(0, 0, 0, 0.2);"
+        <button style="box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);"
           mat-raised-button color="warn" (click)="eliminarClub()">
           ❌ Eliminar Club
         </button>

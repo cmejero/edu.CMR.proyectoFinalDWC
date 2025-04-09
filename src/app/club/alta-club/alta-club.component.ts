@@ -20,21 +20,22 @@ export class AltaClubComponent {
   private router = inject(Router);
 
   password = '';
-  passwordRepetida= '';
+  passwordRepetida = '';
 
   club: Club = {
     nombreClub: '',
     abreviaturaClub: '',
     descripcionClub: '',
     fechaCreacionClub: '',
-    fechaFundacionClub:'',
+    fechaFundacionClub: '',
     localidadClub: '',
     paisClub: '',
     logoClub: '',
     emailClub: '',
     passwordClub: '',
-    telefonoClub: '',
+    telefonoClub: ''
   };
+
   id!: string;
 
   ngOnInit() {
@@ -42,66 +43,76 @@ export class AltaClubComponent {
     if (this.id) {
       this.apiService.getClub(this.id).subscribe(res => {
         this.club = res;
+        this.password = res.passwordClub;
+        this.passwordRepetida = res.passwordClub;
       });
     } else {
       console.log('Nuevo club');
     }
   }
 
+  compararContrasenas(): boolean {
+    if (this.password !== this.passwordRepetida) {
+      this._snackBar.open('Las contraseñas no coinciden', 'Cerrar');
+      return false;
+    }
+    return true;
+  }
+
+  agregarClub() {
+    this.club.passwordClub = this.password;
+    this.club.fechaCreacionClub = new Date().toISOString(); // formato ISO más limpio
+
+    if (!this.club.nombreClub || !this.club.emailClub || !this.club.passwordClub ||
+        !this.club.telefonoClub || !this.club.abreviaturaClub ||
+        !this.club.localidadClub || !this.club.paisClub) {
+      this._snackBar.open('Debe rellenar todo el formulario', 'Cerrar');
+      return;
+    }
+
+    if (this.compararContrasenas()) {
+      this.apiService.createClub(this.club).subscribe({
+        next: (response) => {
+          this._snackBar.open('Club creado correctamente', 'Ok');
+          this.router.navigate(['/altaClub']);
+        },
+        error: (error) => {
+          console.error('Error al crear club:', error);
+          this._snackBar.open(error, 'Cerrar');  // Mostrar el mensaje de error recibido
+        }
+      });
+    }
+  }
+
   modificarClub() {
-    this.apiService.updateClub(`${this.id}`, this.club).subscribe({
-      next: (response) => {
-        console.log('Club actualizado correctamente', response);
-        this._snackBar.open('Club actualizado correctamente', 'Ok');
-        this.router.navigate(['/listaClub']);
-      },
-      error: (err) => {
-        console.error('Error al actualizar club:', err);
-        this._snackBar.open('Error al actualizar club', 'Cerrar');
+    if (this.compararContrasenas()) {
+      if (this.password) {
+        this.club.passwordClub = this.password;
       }
-    });
+
+      this.apiService.updateClub(`${this.id}`, this.club).subscribe({
+        next: (response) => {
+          console.log('Club actualizado correctamente', response);
+          this._snackBar.open('Club actualizado correctamente', 'Ok');
+          this.router.navigate(['/listaClub']);
+        },
+        error: (err) => {
+          console.error('Error al actualizar club:', err);
+          this._snackBar.open('Error al actualizar club', 'Cerrar');
+        }
+      });
+    }
   }
 
- // Método que compara las contraseñas
- compararContrasenas(): boolean {
-  if (this.password !== this.passwordRepetida) {
-    this._snackBar.open('Las contraseñas no coinciden', 'Cerrar');
-    return false;
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const base64Image = reader.result as string;
+        this.club.logoClub = base64Image.split(',')[1];
+      };
+    }
   }
-  return true;
-}
-
-agregarClub() {
-  // Primero, asigna el valor de la contraseña al club
-  this.club.passwordClub = this.password;
-
-  // Asignar la fecha de creación (actual) al club
-  this.club.fechaCreacionClub = new Date().toString(); 
-
-  // Verificar si todos los campos obligatorios están llenos
-  if (!this.club.nombreClub || !this.club.emailClub || !this.club.passwordClub || !this.club.telefonoClub || !this.club.abreviaturaClub || !this.club.localidadClub || !this.club.paisClub) {
-    this._snackBar.open('Debe rellenar todo el formulario', 'Cerrar');
-    return;
-  }
-
-  // Luego, comprobar si las contraseñas coinciden
-  if (this.compararContrasenas()) {
-    // Si las contraseñas coinciden, realizar la creación del club
-    this.apiService.createClub(this.club).subscribe({
-      next: (response) => {
-        this._snackBar.open('Club creado correctamente', 'Ok');
-      },
-      error: (error) => {
-        console.error('Error al crear club:', error);
-        this._snackBar.open('No se pudo crear el club', 'Cerrar');
-      }
-    });
-  }
-}
-
-
-onFileSelected(event: any) {
-  const file = event.target.files[0];
-  this.club.logoClub = file;
-}
 }

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ApiService } from '../../servicios/api.service'; // Importa tu servicio ApiService
-import { ActivatedRoute, Router } from '@angular/router'; // Importa ActivatedRoute
+import { ApiService } from '../../servicios/api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MaterialModule } from '../../shared/material/material.module';
 import { FormsModule } from '@angular/forms';
@@ -20,12 +20,8 @@ export class AltaUsuarioComponent {
   private _snackBar = inject(MatSnackBar);
   private router = inject(Router);
 
-   password='';
-   passwordRepetida ='';
-
-
-
-
+  password = '';
+  passwordRepetida = '';
 
   usuario: Usuario = {
     nombreCompletoUsuario: '',
@@ -38,71 +34,80 @@ export class AltaUsuarioComponent {
     imagenUsuario: '',
     descripcionUsuario: ''
   };
+
   id!: string;
 
-
   ngOnInit() {
-    // Aquí utilizamos ActivatedRoute para acceder a 'snapshot'
-    this.id = this.ruta.snapshot.params['id'];  // 'ruta.snapshot' es el lugar correcto
+    this.id = this.ruta.snapshot.params['id'];
     if (this.id) {
-      // Si hay un ID, leer el usuario desde la API
       this.apiService.getUsuario(this.id).subscribe(res => {
         this.usuario = res;
+        this.password = res.passwordUsuario;
+        this.passwordRepetida = res.passwordUsuario;
       });
     } else {
-      // Si no hay ID, es un nuevo usuario
       console.log('Nuevo usuario');
     }
   }
 
+  compararContrasenas(): boolean {
+    if (this.password !== this.passwordRepetida) {
+      this._snackBar.open('Las contraseñas no coinciden', 'Cerrar');
+      return false;
+    }
+    return true;
+  }
+
+  agregarUsuario() {
+    if (this.compararContrasenas()) {
+      this.usuario.passwordUsuario = this.password;
+
+      if (this.usuario.nombreCompletoUsuario !== '' &&
+          this.usuario.fechaNacimientoUsuario !== '' &&
+          this.usuario.emailUsuario !== '' &&
+          this.usuario.telefonoUsuario !== '' &&
+          this.usuario.passwordUsuario !== '') {
+
+        this.apiService.createUsuario(this.usuario).subscribe({
+          next: (response) => {
+            this._snackBar.open('Usuario creado correctamente', 'Ok');
+            this.router.navigate(['/altaUsuario']);
+          },
+          error: (error) => {
+            console.error('Error al crear usuario:', error);
+            // Mostrar el error específico del email duplicado
+            this._snackBar.open(error, 'Cerrar');
+          }
+        });
+      } else {
+        this._snackBar.open('Debe rellenar el formulario', 'Cerrar');
+      }
+    }
+  }
+
   modificarUsuario() {
-
-    this.apiService.updateUsuario(`${this.id}`, this.usuario).subscribe(response => {
-      console.log('Cliente actualizado correctamente', response);
-      this._snackBar.open('Cliente actualizado correctamente', 'Ok');
-      this.router.navigate(['/listaUsuario']);
-    }  );
-    }
-
-    compararContrasenas(): boolean {
-      if (this.password !== this.passwordRepetida) {
-        this._snackBar.open('Las contraseñas no coinciden', 'Cerrar');
-        return false;
-      }
-      return true;
-    }
-
-    // Método para agregar un nuevo usuario
-    agregarUsuario() {
-      // Primero se verifica si las contraseñas coinciden
-      if (this.compararContrasenas()) {
-        // Si las contraseñas coinciden, se asigna la contraseña al usuario
+    if (this.compararContrasenas()) {
+      if (this.password) {
         this.usuario.passwordUsuario = this.password;
-
-        // Verifica si todos los campos son válidos
-        if (this.usuario.nombreCompletoUsuario !== '' && this.usuario.fechaNacimientoUsuario !== '' && this.usuario.emailUsuario !== '' && this.usuario.telefonoUsuario !== '' && this.usuario.passwordUsuario !== '') {
-
-          console.log(this.usuario); // Se puede quitar después para depuración
-
-          this.apiService.createUsuario(this.usuario).subscribe({
-            next: (response) => {
-              this._snackBar.open('Usuario creado correctamente', 'Ok');
-              this.router.navigate(['/altaUsuario']);
-            },
-            error: (error) => {
-              console.error('Error al crear usuario:', error);
-              this._snackBar.open('No se pudo crear el usuario', 'Cerrar');
-            }
-          });
-        } else {
-          this._snackBar.open('Debe rellenar el formulario', 'Cerrar');
-        }
       }
-    }
 
-  
+      this.apiService.updateUsuario(`${this.id}`, this.usuario).subscribe(response => {
+        console.log('Cliente actualizado correctamente', response);
+        this._snackBar.open('Cliente actualizado correctamente', 'Ok');
+        this.router.navigate(['/listaUsuario']);
+      });
+    }
+  }
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    this.usuario.imagenUsuario = file;
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const base64Image = reader.result as string;
+        this.usuario.imagenUsuario = base64Image.split(',')[1];
+      };
+    }
   }
 }
