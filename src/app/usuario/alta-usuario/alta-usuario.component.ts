@@ -58,32 +58,31 @@ export class AltaUsuarioComponent {
     return true;
   }
 
-  agregarUsuario() {
-    if (this.compararContrasenas()) {
-      this.usuario.passwordUsuario = this.password;
+  async agregarUsuario() {
+    if (!this.compararContrasenas()) return;
 
-      if (this.usuario.nombreCompletoUsuario !== '' &&
-          this.usuario.fechaNacimientoUsuario !== '' &&
-          this.usuario.emailUsuario !== '' &&
-          this.usuario.telefonoUsuario !== '' &&
-          this.usuario.passwordUsuario !== '') {
+    this.usuario.passwordUsuario = this.password;
 
-        this.apiService.createUsuario(this.usuario).subscribe({
-          next: (response) => {
-            this._snackBar.open('Usuario creado correctamente', 'Ok');
-            this.router.navigate(['/altaUsuario']);
-          },
-          error: (error) => {
-            console.error('Error al crear usuario:', error);
-            // Mostrar el error específico del email duplicado
-            this._snackBar.open(error, 'Cerrar');
-          }
-        });
-      } else {
-        this._snackBar.open('Debe rellenar el formulario', 'Cerrar');
-      }
+    if (!this.usuario.nombreCompletoUsuario ||
+        !this.usuario.fechaNacimientoUsuario ||
+        !this.usuario.emailUsuario ||
+        !this.usuario.telefonoUsuario ||
+        !this.usuario.passwordUsuario) {
+      this._snackBar.open('Debe rellenar el formulario', 'Cerrar');
+      return;
+    }
+
+    try {
+      await this.apiService.createUsuario(this.usuario); // <-- aquí va tu try/await
+      this._snackBar.open('Usuario creado correctamente', 'Ok');
+      this.router.navigate(['/altaUsuario']);
+    } catch (error: any) {
+      console.error('Error al crear usuario:', error);
+      this._snackBar.open(error?.message || 'Error al crear usuario', 'Cerrar');
     }
   }
+
+
 
   modificarUsuario() {
     if (this.compararContrasenas()) {

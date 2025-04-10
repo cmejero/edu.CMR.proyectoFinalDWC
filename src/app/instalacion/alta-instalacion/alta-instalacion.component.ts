@@ -66,32 +66,41 @@ export class AltaInstalacionComponent {
     return true;
   }
 
-  agregarInstalacion() {
-    if (this.compararContrasenas()) {
-      this.instalacion.passwordInstalacion = this.password;
-  
-      if (this.instalacion.nombreInstalacion &&
-          this.instalacion.emailInstalacion &&
-          this.instalacion.passwordInstalacion &&
-          this.instalacion.telefonoInstalacion &&
-          this.instalacion.tipoCampo1) {
-  
-        this.apiService.createInstalacion(this.instalacion).subscribe({
-          next: (response) => {
-            this._snackBar.open('Instalación creada correctamente', 'Ok');
-            this.router.navigate(['/altaInstalacion']);
-          },
-          error: (error) => {
-            console.error('Error al crear instalación:', error);
-            this._snackBar.open(error, 'Cerrar');  // Aquí se pasa el mensaje de error
-          }
-        });
-      } else {
-        this._snackBar.open('Debe rellenar el formulario', 'Cerrar');
-      }
+  async agregarInstalacion() {
+    // Asignar la contraseña
+    this.instalacion.passwordInstalacion = this.password;
+
+    // Validación de campos obligatorios
+    if (!this.instalacion.nombreInstalacion ||
+        !this.instalacion.emailInstalacion ||
+        !this.instalacion.passwordInstalacion ||
+        !this.instalacion.telefonoInstalacion ||
+        !this.instalacion.tipoCampo1) {
+      this._snackBar.open('Debe rellenar el formulario', 'Cerrar');
+      return;
+    }
+
+    // Verificar que las contraseñas coinciden
+    if (!this.compararContrasenas()) return;
+
+    try {
+      // Llamada al servicio para crear la instalación
+      await this.apiService.createInstalacion(this.instalacion);
+
+      // Mostrar mensaje de éxito
+      this._snackBar.open('Instalación creada correctamente', 'Ok');
+
+      // Redirigir a la página de alta de la instalación
+      this.router.navigate(['/altaInstalacion']);
+    } catch (error: any) {
+      // Manejar errores y mostrar mensaje
+      console.error('Error al crear instalación:', error);
+      this._snackBar.open(error?.message || 'Error al crear instalación', 'Cerrar');
     }
   }
-  
+
+
+
 
   modificarInstalacion() {
     if (this.compararContrasenas()) {

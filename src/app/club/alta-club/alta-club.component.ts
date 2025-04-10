@@ -59,10 +59,12 @@ export class AltaClubComponent {
     return true;
   }
 
-  agregarClub() {
+  async agregarClub() {
+    // Asignar la contraseña y fecha de creación
     this.club.passwordClub = this.password;
-    this.club.fechaCreacionClub = new Date().toISOString(); // formato ISO más limpio
+    this.club.fechaCreacionClub = new Date().toISOString();
 
+    // Validación de campos obligatorios
     if (!this.club.nombreClub || !this.club.emailClub || !this.club.passwordClub ||
         !this.club.telefonoClub || !this.club.abreviaturaClub ||
         !this.club.localidadClub || !this.club.paisClub) {
@@ -70,19 +72,24 @@ export class AltaClubComponent {
       return;
     }
 
-    if (this.compararContrasenas()) {
-      this.apiService.createClub(this.club).subscribe({
-        next: (response) => {
-          this._snackBar.open('Club creado correctamente', 'Ok');
-          this.router.navigate(['/altaClub']);
-        },
-        error: (error) => {
-          console.error('Error al crear club:', error);
-          this._snackBar.open(error, 'Cerrar');  // Mostrar el mensaje de error recibido
-        }
-      });
+    // Verificar que las contraseñas coinciden
+    if (!this.compararContrasenas()) return;
+
+    try {
+      // Llamada al servicio para crear el club
+      await this.apiService.createClub(this.club); // <-- Aquí va tu try/await
+
+      // Mostrar mensaje de éxito
+      this._snackBar.open('Club creado correctamente', 'Ok');
+      // Redirigir a la página de alta del club
+      this.router.navigate(['/altaClub']);
+    } catch (error: any) {
+      // Manejar errores y mostrar mensaje
+      console.error('Error al crear club:', error);
+      this._snackBar.open(error?.message || 'Error al crear club', 'Cerrar');
     }
   }
+
 
   modificarClub() {
     if (this.compararContrasenas()) {

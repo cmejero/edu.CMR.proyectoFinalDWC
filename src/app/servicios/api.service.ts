@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {  catchError, Observable, throwError } from 'rxjs';
+import {  catchError, lastValueFrom, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { Auth, signOut, user, User } from '@angular/fire/auth';
 
@@ -35,29 +35,6 @@ export class ApiService {
   }
 
 
-  logout(): void {
-    // Eliminar el token de localStorage
-    localStorage.removeItem('auth_token');  // O sessionStorage si lo usas
-
-    // Realizar una solicitud para invalidar la sesión en el backend
-    this.http.delete(`${this.apiUrl}/logout`).subscribe(
-      response => {
-        console.log('Sesión cerrada');
-
-        // Limpiar el estado reactivo de sesión
-        this.datosLogin.cerrarSesion();
-
-        // Redirigir al usuario a la página de login
-        this.router.navigate(['/login']);
-      },
-      error => {
-        console.error('Error al cerrar sesión', error);
-      }
-    );
-  }
-
-
-  // Métodos para la API de usuarios
    // Obtener un usuario por ID
    getUsuario(id: string): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.apiUrl}/usuarios/${id}`).pipe(
@@ -73,11 +50,10 @@ export class ApiService {
   }
 
   // Crear un nuevo usuario
-  createUsuario(usuario: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/guardarUsuario`, usuario).pipe(
-      catchError(this.handleError)
-    );
+  createUsuario(usuario: any): Promise<any> {
+    return lastValueFrom(this.http.post(`${this.apiUrl}/guardarUsuario`, usuario));
   }
+
 
   // Actualizar un usuario
   updateUsuario(id: string, usuario: Usuario): Observable<void> {
@@ -109,10 +85,8 @@ export class ApiService {
   }
 
   // Crear un nuevo club
-  createClub(club: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/guardarClub`, club).pipe(
-      catchError(this.handleError)
-    );
+  createClub(club: any): Promise<any> {
+    return lastValueFrom(this.http.post(`${this.apiUrl}/guardarClub`, club));
   }
 
   // Actualizar un club
@@ -146,13 +120,10 @@ getInstalaciones(): Observable<Instalacion[]> {
     );
   }
 
-  // Crear una nueva instalación
-createInstalacion(instalacion: any): Observable<any> {
-  return this.http.post(`${this.apiUrl}/guardarInstalacion`, instalacion).pipe(
-    catchError(this.handleError) // Manejo de errores
-  );
-}
-
+  // Crear una nueva instalacion
+  createInstalacion(instalacion: any): Promise<any> {
+    return lastValueFrom(this.http.post(`${this.apiUrl}/guardarInstalacion`, instalacion));
+  }
 
   // Actualizar una instalación
   updateInstalacion(id: string, instalacion: Instalacion): Observable<any> {
@@ -168,17 +139,16 @@ createInstalacion(instalacion: any): Observable<any> {
     );
   }
   // Manejar errores
-  private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Ocurrió un error al procesar la solicitud.';
-
-    // Si el error es un 400 (email ya en uso)
-    if (error.status === 400) {
-      errorMessage = 'El email ya está en uso. Por favor, utiliza otro.';
-    } else if (error.status === 500) {
-      errorMessage = 'Error interno del servidor. Por favor, intenta más tarde.';
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMsg = 'Ocurrió un error inesperado';
+    if (error.error instanceof ErrorEvent) {
+      // Error del cliente
+      errorMsg = `Error del cliente: ${error.error.message}`;
+    } else {
+      // Error del servidor
+      errorMsg = error.error?.message || `Error del servidor: ${error.status}`;
     }
-
-    // Devolver un observable con el mensaje de error
-    return throwError(errorMessage);
+    return throwError(() => new Error(errorMsg)); // 🔥 Relanza el error
   }
+
 }

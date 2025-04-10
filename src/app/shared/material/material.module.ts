@@ -9,6 +9,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 
 const material = [
@@ -21,7 +25,18 @@ const material = [
   MatChipsModule,
   MatCheckboxModule,
   CommonModule,
-  FormsModule
+  FormsModule,
+  MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatTableModule, 
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatIconModule,
+    MatFormFieldModule
+
 ]
 
 @NgModule({
