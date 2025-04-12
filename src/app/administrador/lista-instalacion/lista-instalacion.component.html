@@ -1,0 +1,59 @@
+<div class="container-fluid contenedor">
+  <div class="col-md-12 col-sm-12 mx-auto m-5" id="instalacionContainer">
+
+    <!-- Campo de búsqueda -->
+    <input
+      type="text"
+      [(ngModel)]="terminoBusqueda"
+      (input)="filtroBusqueda()"
+      placeholder="Buscar por nombre, email o teléfono"
+      class="form-control mb-3 busqueda-input"
+    />
+
+    <table class="tablaDatos">
+      <thead style="background-color: #1e7d31;">
+        <tr>
+          <th style="border: 1.8px solid #145a29; width: 7%">IMAGEN</th>
+          <th style="border: 1.8px solid #145a29; width: 7%">ID</th>
+          <th style="border: 1.8px solid #145a29; width: 30%">NOMBRE INSTALACION</th>
+          <th style="border: 1.8px solid #145a29; width: 30%">EMAIL INSTALACION</th>
+          <th style="border: 1.8px solid #145a29; width: 10%">TELEFONO</th>
+          <th style="border: 1.8px solid #145a29; width: 10%">OPCIONES</th>
+        </tr>
+      </thead>
+      <tbody id="tablaCuerpo">
+        <tr *ngFor="let instalacion of dataSource.data">
+          <td>
+            <img
+              *ngIf="instalacion.imagenInstalacion"
+              [src]="'data:image/jpeg;base64,' + instalacion.imagenInstalacion"
+              alt="Imagen de instalación"
+              style="width: 50px; height: 50px; border-radius: 15%;"
+            />
+          </td>
+          <td>{{ instalacion.idInstalacion }}</td>
+          <td>{{ instalacion.nombreInstalacion }}</td>
+          <td>{{ instalacion.emailInstalacion }}</td>
+          <td>{{ instalacion.telefonoInstalacion }}</td>
+          <td>
+            <a mat-button class="botonDetalleAdmin" [routerLink]="['/detalleInstalacion', instalacion.idInstalacion]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1.8vw" height="1.8vw" fill="currentColor" class="bi bi-eye-fill" style="color: blue; margin-bottom: 0.1vw" viewBox="0 0 16 16">
+                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8Zm-8 4.5c-4.577 0-7.727-4.278-7.938-4.5C.273 8.278 3.423 4 8 4s7.727 4.278 7.938 4.5c-.21.222-3.36 4.5-7.938 4.5ZM8 5.5A2.5 2.5 0 1 0 8 10a2.5 2.5 0 0 0 0-5Zm0 1A1.5 1.5 0 1 1 8 9a1.5 1.5 0 0 1 0-3Z"></path>
+              </svg>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="paginador-container mt-4">
+      <mat-paginator
+        [length]="instalacionesFiltradas.length"
+        [pageSize]="tamanoPagina"
+        [pageSizeOptions]="[5, 10, 20]"
+        (page)="cambioPagina($event)">
+      </mat-paginator>
+    </div>
+
+  </div>
+</div>

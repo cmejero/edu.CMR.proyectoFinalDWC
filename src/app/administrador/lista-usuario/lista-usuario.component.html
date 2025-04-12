@@ -1,0 +1,61 @@
+<div class="container-fluid contenedor">
+  <div class="col-md-12 col-sm-12 mx-auto m-5" id="usuarioContainer">
+
+    <!-- Campo de búsqueda (opcional) -->
+    <input type="text"
+           [(ngModel)]="terminoBusquedaUsuario"
+           (input)="filtroBusquedaUsuario()"
+           placeholder="Buscar por nombre, email o teléfono"
+           class="form-control mb-3 busqueda-input" />
+
+    <!-- Tabla de usuarios -->
+    <table class="tablaDatos">
+      <thead style="background-color: #2783b8; color: white;">
+        <tr>
+          <th style="border: 1.8px solid #0d6ba1; width: 7%">IMAGEN</th>
+          <th style="border: 1.8px solid #0d6ba1; width: 7%">ID</th>
+          <th style="border: 1.8px solid #0d6ba1; width: 30%">NOMBRE JUGADOR</th>
+          <th style="border: 1.8px solid #0d6ba1; width: 30%">EMAIL JUGADOR</th>
+          <th style="border: 1.8px solid #0d6ba1; width: 10%">TELÉFONO</th>
+          <th style="border: 1.8px solid #0d6ba1; width: 10%">OPCIONES</th>
+        </tr>
+      </thead>
+      <tbody id="tablaCuerpo">
+        <tr *ngFor="let usuario of dataSourceUsuarios.data">
+          <td>
+            <img *ngIf="usuario.imagenUsuario"
+                 [src]="'data:image/jpeg;base64,' + usuario.imagenUsuario"
+                 alt="Imagen de usuario"
+                 class="usuario-imagen">
+          </td>
+          <td>{{ usuario.idUsuario }}</td>
+          <td>{{ usuario.nombreCompletoUsuario }}</td>
+          <td>{{ usuario.emailUsuario }}</td>
+          <td>{{ usuario.telefonoUsuario }}</td>
+          <td>
+            <a mat-button class="botonDetalleAdmin" [routerLink]="['/detalleUsuario', usuario.idUsuario]">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="1.8vw" height="1.8vw"
+                   fill="currentColor"
+                   class="bi bi-eye-fill"
+                   style="color: #0d6ba1;"
+                   viewBox="0 0 16 16">
+                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8Zm-8 4.5c-4.577 0-7.727-4.278-7.938-4.5C.273 8.278 3.423 4 8 4s7.727 4.278 7.938 4.5c-.21.222-3.36 4.5-7.938 4.5ZM8 5.5A2.5 2.5 0 1 0 8 10a2.5 2.5 0 0 0 0-5Zm0 1A1.5 1.5 0 1 1 8 9a1.5 1.5 0 0 1 0-3Z" />
+              </svg>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Paginador estilizado -->
+    <div class="paginador-container">
+      <mat-paginator
+        [length]="usuariosFiltrados.length"
+        [pageSize]="tamanoPaginaUsuario"
+        [pageSizeOptions]="[5, 10, 20]"
+        (page)="cambioPaginaUsuario($event)">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

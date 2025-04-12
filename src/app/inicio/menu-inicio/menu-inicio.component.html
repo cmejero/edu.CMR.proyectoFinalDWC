@@ -1,0 +1,76 @@
+<div class="row p-2 m-2" style="background-color: #004000;">
+  <!-- columna iquierda -->
+  <div class="col-sm-6 col-md-6 ">
+    <div class="row  ">
+
+      <div class="col-sm-4 col-md-4 cabeceraAbajo">
+        <a [routerLink]="['/landingPage']" class="letraCabeceraAbajo">INICIO</a>
+      </div>
+      <div class="col-sm-3 col-md-3 cabeceraAbajo ">
+        <a [routerLink]="['/landingPage']" class="letraCabeceraAbajo">MARCADORES</a>
+      </div>
+      <div class="col-sm-4 col-md-4 cabeceraAbajo ">
+        <a [routerLink]="['/landingPage']" class="letraCabeceraAbajo">EVENTOS</a>
+      </div>
+      <div class="col-sm-1 col-md-1 "></div>
+
+    </div>
+  </div>
+
+
+  <!-- columna derecha -->
+  <div class="col-sm-6 col-md-6 ">
+
+    <div class="row">
+
+      <div class="col-md-5 col-sm-5 cabeceraAbajo">
+  <button mat-button [matMenuTriggerFor]="menuRegistrar" class="cabeceraAbajo" style="color:white;">REGISTRARSE</button>
+  <mat-menu #menuRegistrar="matMenu" style="font-size: 1.63vw; position: absolute; top: 50px; left: 0;  padding: 10px; border-radius: 5px;">
+    <button mat-menu-item [routerLink]="['altaUsuario']" style="font-size: 1.63vw; color: #003300; padding: 10px;">Nuevo Usuario</button>
+    <button mat-menu-item [routerLink]="['altaClub']" style="font-size: 1.63vw; color: #003300;  padding: 10px;">Nuevo Club</button>
+    <button mat-menu-item [routerLink]="['altaInstalacion']" style="font-size: 1.63vw; color: #003300; padding: 10px;">Nueva Instalacion</button>
+  </mat-menu>
+</div>
+
+<div class="col-sm-4 col-md-4 cabeceraAbajo">
+  <a [routerLink]="['/login']" class="letraCabeceraAbajo">INICIAR SESIÓN</a>
+</div>
+
+
+<div class="col-sm-2 col-md-2 cabeceraAbajo">
+  <button mat-button [matMenuTriggerFor]="menuOpciones"
+    style="background-color: #004000; width: 4vw; height: 2.3vw; border-radius: 5px; display: flex; justify-content: center; align-items: center; padding: 0; border: 1px solid white;">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+      class="bi bi-list letraCabeceraAbajo" viewBox="0 0 16 16"
+      style="width: 3vw; height: 2.2vw; color: white;">
+      <path fill-rule="evenodd"
+        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+    </svg>
+  </button>
+
+  <mat-menu #menuOpciones="matMenu" 
+  style="min-width: 12vw; font-size: 1.2vw; background-color: #003300; border-radius: 5px;">
+  
+  <button mat-menu-item (click)="cambiarIdioma()" 
+    style="color: #003300;">Idioma</button>
+    
+  <button mat-menu-item (click)="mostrarAyuda()" 
+    style="color: #003300;">Ayuda</button>
+    
+  <button mat-menu-item (click)="configuracion()" 
+    style="color: #003300;">Configuración</button>
+    
+  <mat-divider></mat-divider>
+  
+  <button mat-menu-item (click)="cerrarSesion()" 
+    style="color: #003300; ">Cerrar sesión</button>
+
+</mat-menu>
+
+</div>
+
+
+
+    </div>
+  </div>
+</div>

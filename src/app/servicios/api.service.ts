@@ -7,7 +7,7 @@ import { Auth, signOut, user, User } from '@angular/fire/auth';
 import { Usuario } from '../shared/modelos/usuario';
 import { Club } from '../shared/modelos/club';
 import { Instalacion } from '../shared/modelos/instalacion';
-import { DatosLoginService } from './datos-login.service';
+import { DatosLoginService } from './datos-login.service'; 
 
 
 @Injectable({
@@ -51,7 +51,16 @@ export class ApiService {
 
   // Crear un nuevo usuario
   createUsuario(usuario: any): Promise<any> {
-    return lastValueFrom(this.http.post(`${this.apiUrl}/guardarUsuario`, usuario));
+    return lastValueFrom(this.http.post(`${this.apiUrl}/guardarUsuario`, usuario).pipe(
+      catchError((error: HttpErrorResponse) => {
+        let errorMsg = 'Error inesperado';
+        if (error.status === 400) {
+          // Si el error es un 400 (Bad Request), extraemos el mensaje del backend
+          errorMsg = error.error || 'Error al crear el usuario';
+        }
+        return throwError(() => new Error(errorMsg));
+      })
+    ));
   }
 
 
@@ -86,8 +95,18 @@ export class ApiService {
 
   // Crear un nuevo club
   createClub(club: any): Promise<any> {
-    return lastValueFrom(this.http.post(`${this.apiUrl}/guardarClub`, club));
+    return lastValueFrom(this.http.post(`${this.apiUrl}/guardarClub`, club).pipe(
+      catchError((error: HttpErrorResponse) => {
+        let errorMsg = 'Error inesperado';
+        if (error.status === 400) {
+          // Si el error es un 400 (Bad Request), extraemos el mensaje del backend
+          errorMsg = error.error || 'Error al crear el club';
+        }
+        return throwError(() => new Error(errorMsg));
+      })
+    ));
   }
+  
 
   // Actualizar un club
   updateClub(id: string, club: Club): Observable<void> {
@@ -122,8 +141,19 @@ getInstalaciones(): Observable<Instalacion[]> {
 
   // Crear una nueva instalacion
   createInstalacion(instalacion: any): Promise<any> {
-    return lastValueFrom(this.http.post(`${this.apiUrl}/guardarInstalacion`, instalacion));
+    return lastValueFrom(this.http.post(`${this.apiUrl}/guardarInstalacion`, instalacion).pipe(
+      catchError((error: HttpErrorResponse) => {
+        let errorMsg = 'Error inesperado';
+        if (error.status === 400) {
+          // Si el error es un 400 (Bad Request), extraemos el mensaje del backend
+          errorMsg = error.error || 'Error al crear la instalación';
+        }
+        return throwError(() => new Error(errorMsg));
+      })
+    ));
   }
+  
+  
 
   // Actualizar una instalación
   updateInstalacion(id: string, instalacion: Instalacion): Observable<any> {
@@ -148,7 +178,7 @@ getInstalaciones(): Observable<Instalacion[]> {
       // Error del servidor
       errorMsg = error.error?.message || `Error del servidor: ${error.status}`;
     }
-    return throwError(() => new Error(errorMsg)); // 🔥 Relanza el error
+    return throwError(() => new Error(errorMsg)); 
   }
 
 }

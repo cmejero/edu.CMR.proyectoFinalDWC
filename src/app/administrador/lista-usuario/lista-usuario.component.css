@@ -1,0 +1,163 @@
+.contenedor {
+	height: 100%;
+  }
+  
+  .contenido {
+	margin-left: 16.6667%;
+	padding: 7px;
+  }
+  
+  .tablaDatos {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #eafeea;
+	color: black;
+	font-size: 1.3vw;
+	box-shadow: 0vw 0.4vw 0.8vw rgba(0, 0, 0, 0.3), 0vw -0.4vw 0.8vw rgba(0, 0, 0, 0.15);
+	font-family: 'Open Sans', sans-serif;
+  }
+  
+  .tablaDatos th,
+  .tablaDatos td {
+	border: 1px solid #aeaeae;
+	padding: 0.6vw;
+	text-align: center;
+  }
+  
+  .tablaDatos th {
+	background-color: #b03a2e; /* Rojo elegante */
+	color: white;
+	text-decoration: underline;
+	font-style: italic;
+	font-size: 1.4vw;
+	font-weight: bold;
+  }
+  
+  .tablaDatos td {
+	border: 0.11vw solid #aeaeae;
+	padding: 0.6vw;
+	text-align: center;
+	font-size: 1.3vw;
+  }
+  
+  .tablaDatos tr:nth-child(even) td {
+	background-color: #d6f5d6; /* Verde claro para pares */
+  }
+  
+  .tablaDatos tr:nth-child(odd) td {
+	background-color: #f1f1f1;
+  }
+  
+  .tablaDatos tr:hover {
+	background-color: #f9f9f9;
+	cursor: pointer;
+  }
+  
+  /* Columnas específicas */
+  .tablaDatos th:nth-child(1),
+  .tablaDatos td:nth-child(1) {
+	width: 8%; /* Opciones */
+  }
+  
+  .tablaDatos th:nth-child(2),
+  .tablaDatos td:nth-child(2) {
+	width: 7%; /* ID */
+  }
+  
+  .tablaDatos th:nth-child(3),
+  .tablaDatos td:nth-child(3) {
+	width: 35%; /* Nombre */
+  }
+  
+  .tablaDatos th:nth-child(4),
+  .tablaDatos td:nth-child(4) {
+	width: 35%; /* Email */
+  }
+  
+  .tablaDatos th:nth-child(5),
+  .tablaDatos td:nth-child(5) {
+	width: 10%; /* Teléfono */
+  }
+  
+  .tablaDatos th:nth-child(6),
+  .tablaDatos td:nth-child(6) {
+	width: 5%; /* Imagen */
+  }
+  
+  .usuario-imagen {
+	width: 50px;
+	height: 50px;
+	border-radius: 15%;
+	object-fit: cover;
+  }
+  
+  /* Botones de acciones */
+  .botonEliminarAdmin {
+	border: 1px solid black;
+	height: 2vw;
+	margin-right: 1vw;
+  }
+  
+  .botonEliminarAdmin:hover {
+	border: 1.5px solid red;
+  }
+  
+  .botonEliminarAdmin:active {
+	border: 2px solid #d4af37;
+  }
+  
+  .botonModificarAdmin {
+	border: 1px solid black;
+	height: 2vw;
+  }
+  
+  .botonModificarAdmin:hover {
+	border: 1.5px solid orange;
+  }
+  
+  .botonModificarAdmin:active {
+	border: 2px solid #d4af37;
+  }
+  
+  /* Input búsqueda */
+  .busqueda-input {
+	font-size: 14px;
+	padding: 8px 12px;
+	width: 250px;
+	background-color: #deecf5;
+	color: #333;
+	border: 1px solid #0d6ba1;
+	border-radius: 5px;
+  }
+  
+  .busqueda-input::placeholder {
+	color: #888;
+  }
+  
+  /* Paginador centrado y estilizado */
+  .paginador-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+  }
+  
+  .paginador-container ::ng-deep .mat-paginator {
+	background-color: #f3f7fb;
+	border-radius: 10px;
+	padding: 10px 20px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .paginador-container ::ng-deep .mat-paginator-icon {
+	color: #0d6ba1;
+  }
+  
+  .paginador-container ::ng-deep .mat-paginator-range-label {
+	font-weight: 500;
+	color: #333;
+  }
+  
+  .paginador-container ::ng-deep .mat-select-trigger {
+	font-weight: 500;
+  }
+  

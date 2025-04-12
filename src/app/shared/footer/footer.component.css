@@ -1,0 +1,21 @@
+footer {
+	background-color: #282828;
+	color: white;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.2vw;
+	border-top: 2px solid black;
+	width: 100%;
+	margin-top: auto;
+	
+}
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor {
+    flex: 1;
+}

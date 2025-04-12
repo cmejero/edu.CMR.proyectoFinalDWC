@@ -1,0 +1,105 @@
+<div class="container-fluid">
+	<div class="row mt-5 mb-5" id="instalacionContainer">
+	  <div class="col-md-10 col-sm-10 mx-auto" style="background-color: #dfead5; border-radius: 12px">
+		<h2 class="text-center mt-4 mb-5 pt-4" style="font-size: 3.5vw; text-decoration: underline;">
+		  <i>Formulario de Registro: Instalación</i>
+		</h2>
+		<div class="registrarFormulario">
+		  <form [formGroup]="instalacionForm" (ngSubmit)="onSubmit()">
+			<table class="tablaFormulario" style="background-color: #d1d1d1; color: black; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6), 0px -4px 8px rgba(0, 0, 0, 0.15)">
+			  <tbody>
+				<tr>
+				  <td>
+					<label for="nombreInstalacion" class="formularioLabel">Nombre de la Instalación</label>
+					<input type="text" class="form-control" id="nombreInstalacion" formControlName="nombreInstalacion" required style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+					<div *ngIf="instalacionForm.get('nombreInstalacion')?.touched && instalacionForm.get('nombreInstalacion')?.invalid" class="error-message">
+					  Nombre de la instalación es obligatorio.
+					</div>
+				  </td>
+				  <td>
+					<label for="direccionInstalacion" class="formularioLabel">Dirección</label>
+					<input type="text" class="form-control" id="direccionInstalacion" formControlName="direccionInstalacion" required style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+					<div *ngIf="instalacionForm.get('direccionInstalacion')?.touched && instalacionForm.get('direccionInstalacion')?.invalid" class="error-message">
+					  Dirección es obligatoria.
+					</div>
+				  </td>
+				</tr>
+				<tr>
+				  <td>
+					<label for="emailInstalacion" class="formularioLabel">Correo Electrónico</label>
+					<input type="email" class="form-control" id="emailInstalacion" formControlName="emailInstalacion" required style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+					<div *ngIf="instalacionForm.get('emailInstalacion')?.touched && instalacionForm.get('emailInstalacion')?.invalid" class="error-message">
+					  Por favor, ingrese un correo electrónico válido.
+					</div>
+				  </td>
+				  <td>
+					<label for="telefonoInstalacion" class="formularioLabel">Teléfono</label>
+					<input type="tel" class="form-control" id="telefonoInstalacion" formControlName="telefonoInstalacion" required style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+					<div *ngIf="instalacionForm.get('telefonoInstalacion')?.touched && instalacionForm.get('telefonoInstalacion')?.invalid" class="error-message">
+					  El teléfono es obligatorio.
+					</div>
+				  </td>
+				</tr>
+				<tr>
+				  <td>
+					<label for="passwordInstalacion" class="formularioLabel">Contraseña</label>
+					<input type="password" class="form-control" id="passwordInstalacion" formControlName="passwordInstalacion" required style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+					<div *ngIf="instalacionForm.get('passwordInstalacion')?.touched && instalacionForm.get('passwordInstalacion')?.invalid" class="error-message">
+					  La contraseña es obligatoria.
+					</div>
+				  </td>
+				  <td>
+					<label for="repasswordInstalacion" class="formularioLabel">Confirmar Contraseña</label>
+					<input type="password" class="form-control" id="repasswordInstalacion" formControlName="repasswordInstalacion" required style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;">
+					<div *ngIf="instalacionForm.get('repasswordInstalacion')?.touched && instalacionForm.get('repasswordInstalacion')?.invalid" class="error-message">
+					  Por favor, confirme la contraseña.
+					</div>
+				  </td>
+				</tr>
+				<tr>
+				  <td>
+					<label for="estadoInstalacion" class="formularioLabel">Estado de la instalación</label>
+					<select id="estadoInstalacion" formControlName="estadoInstalacion" class="form-control" required>
+					  <option value="">Seleccione un estado</option>
+					  <option value="Activo">Activo</option>
+					  <option value="Inactivo">Inactivo</option>
+					</select>
+					<div *ngIf="instalacionForm.get('estadoInstalacion')?.touched && instalacionForm.get('estadoInstalacion')?.invalid" class="error-message">
+					  El estado es obligatorio.
+					</div>
+				  </td>
+				  <td>
+					<label for="imagenInstalacion" class="formularioLabel">Imagen</label>
+					<input type="file" (change)="onFileSelected($event)" class="form-control" style="font-size: 1vw; margin-bottom: 1vw;">
+				  </td>
+				</tr>
+				<tr>
+				  <td>
+					<label for="tipoDeCampo" class="formularioLabel">Tipos de Campo</label>
+					<div formArrayName="tipoDeCampo">
+					  <div *ngFor="let control of tipoDeCampo.controls; let i = index" class="mb-2">
+						<input type="text" [formControlName]="i" class="form-control" placeholder="Tipo de campo">
+						<button type="button" class="btn btn-danger" (click)="removeTipoDeCampo(i)" *ngIf="tipoDeCampo.length > 1">Eliminar</button>
+					  </div>
+					  <button type="button" class="btn btn-success" (click)="addTipoDeCampo()">Agregar otro tipo de campo</button>
+					</div>
+				  </td>
+				  <td>
+					<label for="serviciosInstalacion" class="formularioLabel">Servicios</label>
+					<input type="text" class="form-control" id="serviciosInstalacion" formControlName="serviciosInstalacion" placeholder="Servicios disponibles">
+				  </td>
+				</tr>
+			  </tbody>
+			</table>
+  
+			<!-- Botones de acción: "Registrar" o "Modificar" -->
+			<div class="text-center mt-4">
+			  <button *ngIf="!id" type="submit" class="mat-button" style="color:blue ;font-size:1vw; border:none; background-color: #dfead5; margin-bottom: 2vw ;">Registrar</button>
+			  <button *ngIf="id" type="submit" class="btn btn-primary">Modificar Instalación</button>
+			</div>
+		  </form>
+		</div>
+	  </div>
+	</div>
+  </div>
+  

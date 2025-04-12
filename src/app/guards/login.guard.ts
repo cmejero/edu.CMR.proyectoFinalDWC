@@ -1,6 +1,6 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { DatosLoginService } from '../servicios/datos-login.service'; // Importa tu servicio
+import { DatosLoginService } from '../servicios/datos-login.service';  // Importa tu servicio
 import { map, Observable } from 'rxjs';
 
 export const loginGuard: CanActivateFn = (route, state) => {

@@ -1,0 +1,167 @@
+.contenedor {
+	height: 100%;
+  }
+  
+  .contenido {
+    margin-left: 16.6667%; /* Ya lo tienes, mantén esto para evitar solapamiento */
+    padding: 7px;
+    flex-grow: 1; /* Esto asegura que el contenido ocupe el espacio disponible */
+    overflow-y: auto; /* Si el contenido excede la altura disponible, permite el desplazamiento */
+}
+  
+  .tablaDatos {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #eafeea;
+	color: black;
+	font-size: 1.1vw;
+	box-shadow: 0vw 0.4vw 0.8vw rgba(0, 0, 0, 0.3), 0vw -0.4vw 0.8vw rgba(0, 0, 0, 0.15);
+	font-family: 'Open Sans', sans-serif;
+  }
+  
+  .tablaDatos th,
+  .tablaDatos td {
+	border: 0.11vw solid #aeaeae;
+	padding: 0.6vw;
+	text-align: center;
+  }
+  
+  .tablaDatos th {
+	text-decoration: underline;
+	font-style: italic;
+	font-size: 1.4vw;
+	font-weight: bold;
+	background-color: #1e7d31; /* Verde elegante */
+	color: white;
+  }
+  
+  .tablaDatos td {
+	border: 0.11vw solid #aeaeae;
+	padding: 0.6vw;
+	text-align: center;
+	font-size: 1.3vw;
+  }
+  
+  .tablaDatos tr:nth-child(even) {
+	background-color: #e0fee0;
+  }
+  
+  .tablaDatos tr:nth-child(odd) {
+	background-color: #f1f1f1;
+  }
+  
+  .tablaDatos tr:hover {
+	background-color: #f9f9f9;
+	cursor: pointer;
+  }
+  
+  /* Columnas */
+  .tablaDatos th:nth-child(1),
+  .tablaDatos td:nth-child(1) {
+	width: 7%; /* Imagen */
+  }
+  
+  .tablaDatos th:nth-child(2),
+  .tablaDatos td:nth-child(2) {
+	width: 7%; /* ID */
+  }
+  
+  .tablaDatos th:nth-child(3),
+  .tablaDatos td:nth-child(3) {
+	width: 30%; /* Nombre */
+  }
+  
+  .tablaDatos th:nth-child(4),
+  .tablaDatos td:nth-child(4) {
+	width: 30%; /* Email */
+  }
+  
+  .tablaDatos th:nth-child(5),
+  .tablaDatos td:nth-child(5) {
+	width: 10%; /* Teléfono */
+  }
+  
+  .tablaDatos th:nth-child(6),
+  .tablaDatos td:nth-child(6) {
+	width: 10%; /* Opciones */
+  }
+  
+  .usuario-imagen {
+	width: 50px;
+	height: 50px;
+	border-radius: 15%;
+	object-fit: cover;
+  }
+  
+  /* Botones admin */
+  .botonEliminarAdmin {
+	border: 1px solid black;
+	height: 2vw;
+	margin-right: 1vw;
+  }
+  
+  .botonEliminarAdmin:hover {
+	border: 1.5px solid red;
+  }
+  
+  .botonEliminarAdmin:active {
+	border: 2px solid #d4af37;
+  }
+  
+  .botonModificarAdmin {
+	border: 1px solid black;
+	height: 2vw;
+  }
+  
+  .botonModificarAdmin:hover {
+	border: 1.5px solid orange;
+  }
+  
+  .botonModificarAdmin:active {
+	border: 2px solid #d4af37;
+  }
+  
+  /* Campo de búsqueda */
+  .busqueda-input {
+	font-size: 14px;
+	padding: 8px 12px;
+	width: 250px;
+	background-color: #deecf5;
+	color: #333;
+	border: 1px solid #0d6ba1;
+	border-radius: 5px;
+	margin-bottom: 15px;
+  }
+  
+  .busqueda-input::placeholder {
+	color: #888;
+  }
+  
+  /* Estilo para el paginador */
+  .paginador-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+  
+  }
+  
+  .paginador-container ::ng-deep .mat-paginator {
+	background-color: #f3f7fb;
+	border-radius: 10px;
+	padding: 10px 20px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .paginador-container ::ng-deep .mat-paginator-icon {
+	color: #0d6ba1;
+  }
+  
+  .paginador-container ::ng-deep .mat-paginator-range-label {
+	font-weight: 500;
+	color: #333;
+  }
+  
+  .paginador-container ::ng-deep .mat-select-trigger {
+	font-weight: 500;
+  }
+  

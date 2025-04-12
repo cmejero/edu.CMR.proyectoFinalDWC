@@ -9,6 +9,7 @@ import { getAnalytics, provideAnalytics } from '@angular/fire/analytics';
 import { getAuth, provideAuth } from '@angular/fire/auth';  // Agregado para proveer Auth
 import { environment } from '../environments/environment'; // Importa desde environment.ts
 import { provideHttpClient } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),  // Proveer Auth para autenticación
-    provideHttpClient()
+    provideHttpClient(),
+    ReactiveFormsModule
   ]
 };

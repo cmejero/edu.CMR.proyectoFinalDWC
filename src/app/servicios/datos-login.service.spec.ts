@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DatosLoginService } from './datos-login.service';
+import { DatosLoginService } from '../instalacion/datos-login.service';
 
 describe('DatosLoginService', () => {
   let service: DatosLoginService;
