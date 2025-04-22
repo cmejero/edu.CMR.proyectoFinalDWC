@@ -1,9 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { RouterModule, RouterLink, Router } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
+import { Router } from '@angular/router';
 import { DatosLoginService } from '../../servicios/datos-login.service';
 
 @Component({

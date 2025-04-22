@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';  // Asegúrate de tener Router importado
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
+
 
 @Component({
   selector: 'app-menu-inicio',
@@ -12,7 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class MenuInicioComponent {
 
-  constructor(private router: Router) {} 
+  constructor(private router: Router) {}
 
   cambiarIdioma() {
     console.log('Cambiando idioma...');
@@ -28,6 +25,6 @@ export class MenuInicioComponent {
 
   cerrarSesion() {
     console.log('Cerrando sesión...');
-    this.router.navigate(['/landingPage']); 
+    this.router.navigate(['/landingPage']);
   }
 }

@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators, FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl  } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ApiService } from '../../servicios/api.service'; 
-import { MaterialModule } from '../../shared/material/material.module';
+import { ApiService } from '../../servicios/api.service';
 
 @Component({
   selector: 'app-alta-instalacion',
   templateUrl: './alta-instalacion.component.html',
   styleUrls: ['./alta-instalacion.component.css'],
-  
+
 })
 export class AltaInstalacionComponent implements OnInit {
   instalacionForm: FormGroup;
@@ -49,7 +48,7 @@ export class AltaInstalacionComponent implements OnInit {
         next: (res) => {
           // Llenar los valores del formulario con la información de la instalación
           this.instalacionForm.patchValue(res);
-  
+
           // Si estamos editando una instalación existente, asegurarnos de no vaciar las contraseñas
           // Asegúrate de que las contraseñas actuales se muestren en los campos, si estás editando
           if (res.passwordInstalacion) {
@@ -64,8 +63,8 @@ export class AltaInstalacionComponent implements OnInit {
       });
     }
   }
-  
-  
+
+
 
   // Función de validación de contraseñas
   passwordsMatchValidator(group: FormGroup) {
@@ -74,7 +73,7 @@ export class AltaInstalacionComponent implements OnInit {
     return password === confirmPassword ? null : { mismatch: true };
   }
 
-  
+
 
   createTipoDeCampo(): FormControl {
     return this.fb.control('');  // Creación de un control de tipo cadena (string)
@@ -108,9 +107,9 @@ export class AltaInstalacionComponent implements OnInit {
   onSubmit(): void {
     if (this.instalacionForm.valid) {
       const formData = this.instalacionForm.value;
-  
+
       console.log('Formulario enviado:', formData);
-  
+
       if (this.id) {
         this.modificarInstalacion(formData);
       } else {

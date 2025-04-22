@@ -4,13 +4,13 @@
     <div class="row  ">
 
       <div class="col-sm-4 col-md-4 cabeceraAbajo">
-        <a [routerLink]="['/landingPage']" class="letraCabeceraAbajo">INICIO</a>
+        <a routerLink="/landingPage" class="letraCabeceraAbajo">INICIO</a>
       </div>
       <div class="col-sm-3 col-md-3 cabeceraAbajo ">
-        <a [routerLink]="['/landingPage']" class="letraCabeceraAbajo">MARCADORES</a>
+        <a routerLink="/landingPage" class="letraCabeceraAbajo">MARCADORES</a>
       </div>
       <div class="col-sm-4 col-md-4 cabeceraAbajo ">
-        <a [routerLink]="['/landingPage']" class="letraCabeceraAbajo">EVENTOS</a>
+        <a routerLink="/landingPage" class="letraCabeceraAbajo">EVENTOS</a>
       </div>
       <div class="col-sm-1 col-md-1 "></div>
 
@@ -26,14 +26,14 @@
       <div class="col-md-5 col-sm-5 cabeceraAbajo">
   <button mat-button [matMenuTriggerFor]="menuRegistrar" class="cabeceraAbajo" style="color:white;">REGISTRARSE</button>
   <mat-menu #menuRegistrar="matMenu" style="font-size: 1.63vw; position: absolute; top: 50px; left: 0;  padding: 10px; border-radius: 5px;">
-    <button mat-menu-item [routerLink]="['altaUsuario']" style="font-size: 1.63vw; color: #003300; padding: 10px;">Nuevo Usuario</button>
-    <button mat-menu-item [routerLink]="['altaClub']" style="font-size: 1.63vw; color: #003300;  padding: 10px;">Nuevo Club</button>
-    <button mat-menu-item [routerLink]="['altaInstalacion']" style="font-size: 1.63vw; color: #003300; padding: 10px;">Nueva Instalacion</button>
+    <button mat-menu-item routerLink="altaUsuario" style="font-size: 1.63vw; color: #003300; padding: 10px;">Nuevo Usuario</button>
+    <button mat-menu-item routerLink="altaClub" style="font-size: 1.63vw; color: #003300;  padding: 10px;">Nuevo Club</button>
+    <button mat-menu-item routerLink="altaInstalacion" style="font-size: 1.63vw; color: #003300; padding: 10px;">Nueva Instalacion</button>
   </mat-menu>
 </div>
 
 <div class="col-sm-4 col-md-4 cabeceraAbajo">
-  <a [routerLink]="['/login']" class="letraCabeceraAbajo">INICIAR SESIÓN</a>
+  <a routerLink="/login" class="letraCabeceraAbajo">INICIAR SESIÓN</a>
 </div>
 
 
@@ -48,21 +48,21 @@
     </svg>
   </button>
 
-  <mat-menu #menuOpciones="matMenu" 
+  <mat-menu #menuOpciones="matMenu"
   style="min-width: 12vw; font-size: 1.2vw; background-color: #003300; border-radius: 5px;">
-  
-  <button mat-menu-item (click)="cambiarIdioma()" 
+
+  <button mat-menu-item (click)="cambiarIdioma()"
     style="color: #003300;">Idioma</button>
-    
-  <button mat-menu-item (click)="mostrarAyuda()" 
+
+  <button mat-menu-item (click)="mostrarAyuda()"
     style="color: #003300;">Ayuda</button>
-    
-  <button mat-menu-item (click)="configuracion()" 
+
+  <button mat-menu-item (click)="configuracion()"
     style="color: #003300;">Configuración</button>
-    
+
   <mat-divider></mat-divider>
-  
-  <button mat-menu-item (click)="cerrarSesion()" 
+
+  <button mat-menu-item (click)="cerrarSesion()"
     style="color: #003300; ">Cerrar sesión</button>
 
 </mat-menu>

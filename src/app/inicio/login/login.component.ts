@@ -1,19 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
-import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgIf } from '@angular/common';
-import { MatInput } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
-import { ApiService } from '../../servicios/api.service'; 
-import { DatosLoginService } from '../../servicios/datos-login.service'; 
+import { ApiService } from '../../servicios/api.service';
+import { DatosLoginService } from '../../servicios/datos-login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  
+
 })
 export class LoginComponent {
 

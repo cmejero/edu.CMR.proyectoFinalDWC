@@ -1,9 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ApiService } from '../../servicios/api.service'; 
-import { Router, ActivatedRoute, RouterModule } from '@angular/router';
+import { ApiService } from '../../servicios/api.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatCardModule } from '@angular/material/card';
-import { MaterialModule } from '../../shared/material/material.module';
 import { Instalacion } from '../../shared/modelos/instalacion';
 
 @Component({

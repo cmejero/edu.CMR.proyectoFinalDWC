@@ -15,7 +15,7 @@ import { InstalacionModule } from '../instalacion/instalacion.module';
     MenuComponent, // Declara el MenuComponent
     FooterComponent,
      // Declara el FooterComponent
-    
+
   ],
   imports: [
     CommonModule,
@@ -25,7 +25,7 @@ import { InstalacionModule } from '../instalacion/instalacion.module';
     JugadorModule,
     InicioModule,
     InstalacionModule
-     
+
   ],
   exports: [
     MenuComponent, // Exporta el MenuComponent

@@ -1,21 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { DatosLoginService } from '../../servicios/datos-login.service'; 
-import { ApiService } from '../../servicios/api.service'; 
+import { DatosLoginService } from '../../servicios/datos-login.service';
+import { ApiService } from '../../servicios/api.service';
 
-// Importa los componentes para el menú
-import { MenuAdminComponent } from "../../administrador/menu-admin/menu-admin.component";
-import { MenuJugadorComponent } from '../../jugador/menu-jugador/menu-jugador.component'; 
-import { MenuClubComponent } from "../../club/menu-club/menu-club.component";
-import { MenuInstalacionComponent } from "../../instalacion/menu-instalacion/menu-instalacion.component";
-import { MenuInicioComponent } from "../../inicio/menu-inicio/menu-inicio.component";
-import { AltaInstalacionComponent } from "../../inicio/alta-instalacion/alta-instalacion.component";
-
-// Importa módulos necesarios
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-menu',

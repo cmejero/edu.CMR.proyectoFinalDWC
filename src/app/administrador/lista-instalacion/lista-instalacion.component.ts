@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { ApiService } from '../../servicios/api.service'; 
+import { ApiService } from '../../servicios/api.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { MaterialModule } from '../../shared/material/material.module';
+
 
 @Component({
   selector: 'app-lista-instalacion',
@@ -18,7 +17,7 @@ export class ListaInstalacionComponent {
   paginaActual: number = 0;
 
   // Crear MatTableDataSource
-  dataSource = new MatTableDataSource<any>();  
+  dataSource = new MatTableDataSource<any>();
   columnasMostradas: string[] = ['imagen', 'idInstalacion', 'nombreInstalacion', 'emailInstalacion', 'telefonoInstalacion', 'opciones']; // Definir las columnas a mostrar
 
   ngOnInit() {

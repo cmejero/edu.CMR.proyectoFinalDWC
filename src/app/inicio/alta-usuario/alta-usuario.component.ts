@@ -2,8 +2,6 @@ import { Component, inject } from '@angular/core';
 import { ApiService } from '../../servicios/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MaterialModule } from '../../shared/material/material.module';
-import { FormsModule } from '@angular/forms';
 import { Usuario } from '../../shared/modelos/usuario';
 
 @Component({
@@ -58,9 +56,9 @@ export class AltaUsuarioComponent {
 
   async agregarUsuario() {
     if (!this.compararContrasenas()) return;
-  
+
     this.usuario.passwordUsuario = this.password;
-  
+
     if (!this.usuario.nombreCompletoUsuario ||
         !this.usuario.fechaNacimientoUsuario ||
         !this.usuario.emailUsuario ||
@@ -69,7 +67,7 @@ export class AltaUsuarioComponent {
       this._snackBar.open('Debe rellenar el formulario', 'Cerrar');
       return;
     }
-  
+
     try {
       await this.apiService.createUsuario(this.usuario);
       this._snackBar.open('Usuario creado correctamente', 'Ok');
@@ -80,9 +78,9 @@ export class AltaUsuarioComponent {
       this._snackBar.open(error?.message || 'Error al crear usuario', 'Cerrar');
     }
   }
-  
-  
-  
+
+
+
 
 
 

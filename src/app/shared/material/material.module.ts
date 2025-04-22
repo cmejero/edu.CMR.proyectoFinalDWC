@@ -12,7 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 
 // Elimina RouterModule y RouterLink de aquí
@@ -30,17 +29,15 @@ const material = [
   MatSortModule,
   MatTableModule,
   MatCardModule,
-  FormsModule,
-  ReactiveFormsModule,
   MatDividerModule
 ];
 
 @NgModule({
-  imports: [
-    ...material
-  ],
-  exports: [
-    ...material
-  ]
+  imports:
+    material
+  ,
+  exports:
+    material
+
 })
 export class MaterialModule { }

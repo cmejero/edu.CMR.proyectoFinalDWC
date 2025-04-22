@@ -2,12 +2,12 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {  catchError, lastValueFrom, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { Auth, signOut, user, User } from '@angular/fire/auth';
+import { Auth, user, User } from '@angular/fire/auth';
 
 import { Usuario } from '../shared/modelos/usuario';
 import { Club } from '../shared/modelos/club';
 import { Instalacion } from '../shared/modelos/instalacion';
-import { DatosLoginService } from './datos-login.service'; 
+import { DatosLoginService } from './datos-login.service';
 
 
 @Injectable({
@@ -106,7 +106,7 @@ export class ApiService {
       })
     ));
   }
-  
+
 
   // Actualizar un club
   updateClub(id: string, club: Club): Observable<void> {
@@ -152,8 +152,8 @@ getInstalaciones(): Observable<Instalacion[]> {
       })
     ));
   }
-  
-  
+
+
 
   // Actualizar una instalación
   updateInstalacion(id: string, instalacion: Instalacion): Observable<any> {
@@ -178,7 +178,7 @@ getInstalaciones(): Observable<Instalacion[]> {
       // Error del servidor
       errorMsg = error.error?.message || `Error del servidor: ${error.status}`;
     }
-    return throwError(() => new Error(errorMsg)); 
+    return throwError(() => new Error(errorMsg));
   }
 
 }

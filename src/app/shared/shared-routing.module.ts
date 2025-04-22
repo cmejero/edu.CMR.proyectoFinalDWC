@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Importa los componentes que quieras usar en las rutas
 import { MenuComponent } from './menu/menu.component'; // Si necesitas un componente en la ruta
-import { FooterComponent } from './footer/footer.component'; // O el FooterComponent
+
 
 const routes: Routes = [
   // Aquí puedes agregar rutas específicas si es necesario para el SharedModule

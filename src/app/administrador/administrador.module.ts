@@ -12,14 +12,14 @@ import { ListaInstalacionComponent } from './lista-instalacion/lista-instalacion
 import { ListaUsuarioComponent } from './lista-usuario/lista-usuario.component';
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
 import { MaterialModule } from '../shared/material/material.module';
-import { MatCardModule } from '@angular/material/card';
-import {  RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+
+
+
 
 
 @NgModule({
   declarations: [
-    AdministradorComponent,   
+    AdministradorComponent,
     DetalleClubComponent,
     DetalleInstalacionComponent,
     DetalleUsuarioComponent,
@@ -31,13 +31,13 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    AdministradorRoutingModule, 
-    MaterialModule,
-    RouterModule,
-    
-  ],
-    exports: [
-      MenuAdminComponent
-    ]
+    AdministradorRoutingModule,
+    MaterialModule
+
+
+
+  ], exports: [
+    MenuAdminComponent
+  ]
 })
 export class AdministradorModule { }

@@ -8,20 +8,21 @@ import { MenuClubComponent } from './menu-club/menu-club.component';
 import { MaterialModule } from '../shared/material/material.module';
 
 
+
 @NgModule({
   declarations: [
-    ClubComponent, 
+    ClubComponent,
     InicioClubComponent,
     MenuClubComponent
   ],
   imports: [
     CommonModule,
-    ClubRoutingModule, 
+    ClubRoutingModule,
     MaterialModule
   ],
-    exports: [
-      MenuClubComponent,
-      
-    ]
+  exports: [
+    MenuClubComponent,
+
+  ]
 })
 export class ClubModule { }

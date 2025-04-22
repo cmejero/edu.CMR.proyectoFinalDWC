@@ -1,9 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ApiService } from '../../servicios/api.service'; 
+import { ApiService } from '../../servicios/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MaterialModule } from '../../shared/material/material.module';
-import { FormsModule } from '@angular/forms';
 import { Club } from '../../shared/modelos/club';
 
 @Component({
