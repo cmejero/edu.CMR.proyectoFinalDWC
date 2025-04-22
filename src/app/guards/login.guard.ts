@@ -12,7 +12,7 @@ export const loginGuard: CanActivateFn = (route, state) => {
   // Suscríbete a `userType$` para obtener el valor actual de tipo de usuario
   return userType$.pipe(
     map(userType => {
-      if (state.url === '/landingPage') {
+      if (state.url === '/login') {
         return true; // Permitir acceso a la landing page sin necesidad de autenticación
       }
 

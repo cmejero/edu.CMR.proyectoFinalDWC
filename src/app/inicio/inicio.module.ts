@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { InicioRoutingModule } from './inicio-routing.module';  // Ruta de tus rutas del módulo de Inicio
 import { MaterialModule } from '../shared/material/material.module'; // Importa el MaterialModule optimizado
 import { InicioComponent } from './inicio.component';
@@ -9,6 +9,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AltaClubComponent } from './alta-club/alta-club.component';
 import { AltaInstalacionComponent } from './alta-instalacion/alta-instalacion.component';
 import { AltaUsuarioComponent } from './alta-usuario/alta-usuario.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,7 +25,10 @@ import { AltaUsuarioComponent } from './alta-usuario/alta-usuario.component';
   imports: [
     CommonModule,
     InicioRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
+     
 
   ],
   exports: [

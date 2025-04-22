@@ -1,11 +1,11 @@
 <div class="container-fluid">
-  <div class="row mt-5 mb-5"  id="usuarioContainer">
+  <div class="row mt-5 mb-5" id="usuarioContainer">
     <div class="col-md-10 col-sm-10 mx-auto" style="background-color: #dfead5; border-radius: 12px">
       <h2 class="text-center mt-5 mb-5 pt-4" style="font-size: 3.5vw; text-decoration: underline;">
         <i>Formulario de Registro: Usuario</i>
       </h2>
       <div class="registrarFormulario">
-        <form>
+        <form #usuarioForm="ngForm">
           <table class="tablaFormulario" style="background-color: #dedede; color: black; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6), 0px -4px 8px rgba(0, 0, 0, 0.15)">
             <tbody>
               <tr>
@@ -17,7 +17,6 @@
                   <label for="aliasUsuario" class="formularioLabel">Alias</label>
                   <input type="text" class="form-control" id="aliasUsuario" name="aliasUsuario" [(ngModel)]="usuario.aliasUsuario" required>
                 </td>
-
               </tr>
               <tr>
                 <td>
@@ -28,7 +27,6 @@
                   <label for="emailUsuario" class="formularioLabel">Correo Electrónico</label>
                   <input type="email" class="form-control" id="emailUsuario" name="emailUsuario" [(ngModel)]="usuario.emailUsuario" required>
                 </td>
-
               </tr>
               <tr>
                 <td>
@@ -43,7 +41,6 @@
                     <option value="Administrador">Administrador</option>
                   </select>
                 </td>
-
               </tr>
               <tr>
                 <td>
@@ -54,24 +51,22 @@
                   <label for="passwordUsuario" class="formularioLabel">Repetir Contraseña</label>
                   <input type="password" class="form-control" id="repetirPasswordUsuario" name="repetirPasswordUsuario" [(ngModel)]="passwordRepetida" required>
                 </td>
-
               </tr>
               <tr>
                 <td>
                   <label for="imagenUsuario" class="formularioLabel">Imagen del Usuario</label>
-                  <input type="file"  class="form-control" id="imagenUsuario" name="imagenUsuario" (change)="onFileSelected($event)">
+                  <input type="file" class="form-control" id="imagenUsuario" name="imagenUsuario" (change)="onFileSelected($event)">
                 </td>
-
                 <td>
                   <label for="descripcionUsuario" class="formularioLabel">Descripción</label>
-                  <textarea class="form-control" style="margin-bottom: 1vw;"id="descripcionUsuario" name="descripcionUsuario" [(ngModel)]="usuario.descripcionUsuario" rows="3"></textarea>
+                  <textarea class="form-control" style="margin-bottom: 1vw;" id="descripcionUsuario" name="descripcionUsuario" [(ngModel)]="usuario.descripcionUsuario" rows="3"></textarea>
                 </td>
               </tr>
             </tbody>
           </table>
 
           <div class="text-center mt-4 mb-5">
-            <button *ngIf="id" mat-button (click)=" modificarUsuario()">Modificar</button>
+            <button *ngIf="id" mat-button (click)="modificarUsuario()">Modificar</button>
             <button *ngIf="!id" mat-button (click)="agregarUsuario()">Registrar</button>
           </div>
         </form>

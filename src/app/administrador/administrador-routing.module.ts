@@ -17,6 +17,10 @@ const routes: Routes = [
     component: InicioAdminComponent,  // El componente que se carga por defecto cuando entras al módulo
     children: [
       {
+        path: 'inicioAdmin',
+        component: InicioAdminComponent
+      },
+      {
         path: 'menuAdmin',  // Ruta para el menú del administrador
         component: MenuAdminComponent
       },
@@ -43,11 +47,8 @@ const routes: Routes = [
       {
         path: 'detalleInstalacion/:id',  // Ruta para ver el detalle de una instalación
         component: DetalleInstalacionComponent
-      },
-      {
-        path: 'inicioAdmin',  // Ruta para el inicio del administrador
-        component: InicioAdminComponent  // Aquí asegúrate de que este componente esté declarado correctamente
       }
+      
     ]
   }
 ];

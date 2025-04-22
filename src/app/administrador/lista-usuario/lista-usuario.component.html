@@ -3,7 +3,7 @@
 
     <!-- Campo de búsqueda (opcional) -->
     <input type="text"
-           [(ngModel)]="terminoBusquedaUsuario"
+           ngModel="terminoBusquedaUsuario"
            (input)="filtroBusquedaUsuario()"
            placeholder="Buscar por nombre, email o teléfono"
            class="form-control mb-3 busqueda-input" />

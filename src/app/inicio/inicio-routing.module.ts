@@ -12,31 +12,31 @@ import { LoginComponent } from './login/login.component';
 // Define las rutas del módulo Inicio
 const routes: Routes = [
   {
-    path: '',  // Ruta principal de este módulo
+    path: '',  // Ruta raíz
     component: LandingPageComponent,  // El componente que se carga cuando se accede al módulo Inicio
-    children: [  // Si tienes rutas hijas, las defines aquí
-      {
-        path: 'menuInicio',  // Ruta para el menú de inicio
-        component: MenuInicioComponent
-      },
-      {
-        path: 'altaClub',  // Ruta para el componente de alta de club
-        component: AltaClubComponent
-      },
-      {
-        path: 'altaInstalacion',  // Ruta para el componente de alta de instalación
-        component: AltaInstalacionComponent
-      },
-      {
-        path: 'altaUsuario',  // Ruta para el componente de alta de usuario
-        component: AltaUsuarioComponent
-      },
-      {
-        path: 'login',  // Ruta para el componente de login
-        component: LoginComponent
-      }
-    ]
+  },
+  {
+    path: 'login',  // Ruta independiente para Login
+    component: LoginComponent
+  },
+  {
+    path: 'menuInicio',  // Ruta para el menú de inicio
+    component: MenuInicioComponent
+  },
+  {
+    path: 'altaClub',  // Ruta para el componente de alta de club
+    component: AltaClubComponent
+  },
+  {
+    path: 'altaInstalacion',  // Ruta para el componente de alta de instalación
+    component: AltaInstalacionComponent
+  },
+  {
+    path: 'altaUsuario',  // Ruta para el componente de alta de usuario
+    component: AltaUsuarioComponent
   }
+    
+  
 ];
 
 @NgModule({

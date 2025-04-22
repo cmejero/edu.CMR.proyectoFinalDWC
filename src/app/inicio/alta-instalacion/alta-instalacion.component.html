@@ -78,7 +78,7 @@
 					<label for="tipoDeCampo" class="formularioLabel">Tipos de Campo</label>
 					<div formArrayName="tipoDeCampo">
 					  <div *ngFor="let control of tipoDeCampo.controls; let i = index" class="mb-2">
-						<input type="text" [formControlName]="i" class="form-control" placeholder="Tipo de campo">
+						<input type="text" formControlName="i" class="form-control" placeholder="Tipo de campo">
 						<button type="button" class="btn btn-danger" (click)="removeTipoDeCampo(i)" *ngIf="tipoDeCampo.length > 1">Eliminar</button>
 					  </div>
 					  <button type="button" class="btn btn-success" (click)="addTipoDeCampo()">Agregar otro tipo de campo</button>
