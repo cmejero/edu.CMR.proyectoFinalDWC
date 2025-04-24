@@ -5,22 +5,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioClubComponent } from './inicio-club/inicio-club.component';
 import { MenuClubComponent } from './menu-club/menu-club.component';
 
+import { loginGuard } from '../guards/login.guard';  // Ajusta la ruta según tu estructura
+
 const routes: Routes = [
   {
     path: '',  // Ruta principal del módulo Club
-    component: InicioClubComponent,  // El componente que se carga por defecto cuando entras al módulo Club
+    component: InicioClubComponent,
+    canActivate: [loginGuard],  // Protege el acceso con el guard
+    data: { requiredType: 'club' },  // Solo tipo CLUB puede entrar
     children: [
       {
-        path: 'menuClub',  // Ruta para el menú del Club
+        path: 'menuClub',
         component: MenuClubComponent
       },
-      // Aquí puedes agregar más rutas hijas si tienes otros componentes para esta sección
+      // Aquí puedes agregar más rutas hijas protegidas
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],  // Importa las rutas para este módulo específico
-  exports: [RouterModule]  // Exporta RouterModule para que puedas usar estas rutas
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class ClubRoutingModule { }

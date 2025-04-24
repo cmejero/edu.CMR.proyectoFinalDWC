@@ -91,10 +91,10 @@
 				</tr>
 			  </tbody>
 			</table>
-  
+
 			<!-- Botones de acción: "Registrar" o "Modificar" -->
 			<div class="text-center mt-4">
-			  <button *ngIf="!id" type="submit" class="mat-button" style="color:blue ;font-size:1vw; border:none; background-color: #dfead5; margin-bottom: 2vw ;">Registrar</button>
+			  <button *ngIf="!id" [disabled]="!instalacionForm.valid" type="submit" class="mat-button" style="color:blue ;font-size:1vw; border:none; background-color: #dfead5; margin-bottom: 2vw ;">Registrar</button>
 			  <button *ngIf="id" type="submit" class="btn btn-primary">Modificar Instalación</button>
 			</div>
 		  </form>
@@ -102,4 +102,3 @@
 	  </div>
 	</div>
   </div>
-  

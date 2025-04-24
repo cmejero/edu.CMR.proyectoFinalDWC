@@ -1,17 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioJugadorComponent } from './inicio-jugador/inicio-jugador.component';
-import { MenuJugadorComponent } from './menu-jugador/menu-jugador.component'; 
+import { MenuJugadorComponent } from './menu-jugador/menu-jugador.component';
 
-// Definimos las rutas del módulo
+// Importamos el guard
+import { loginGuard } from '../guards/login.guard';
+
 const routes: Routes = [
   {
     path: '',
     component: InicioJugadorComponent,
+    canActivate: [loginGuard],
+    data: { requiredType: 'jugador' },
     children: [
       {
         path: 'menuJugador',
-        component: MenuJugadorComponent
+        component: MenuJugadorComponent,
+        canActivate: [loginGuard],
+        data: { requiredType: 'JUGADOR' }
       }
     ]
   }
@@ -21,4 +27,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class JugadorRoutingModule { }  // Asegúrate de exportar correctamente el módulo
+export class JugadorRoutingModule { }

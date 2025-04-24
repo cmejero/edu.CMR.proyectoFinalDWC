@@ -60,7 +60,7 @@ export class LoginComponent {
             this.router.navigate(['/inicioInstalacion']);
             break;
           case 'administrador':
-            this.router.navigate(['/inicioAdmin']);
+            this.router.navigate(['/administrador']);
             break;
           default:
             console.warn('⚠ Tipo de usuario desconocido:', tipoUsuario);

@@ -93,7 +93,7 @@ export class AltaUsuarioComponent {
       this.apiService.updateUsuario(`${this.id}`, this.usuario).subscribe(response => {
         console.log('Cliente actualizado correctamente', response);
         this._snackBar.open('Cliente actualizado correctamente', 'Ok');
-        this.router.navigate(['/listaUsuario']);
+        this.router.navigate(['/administrador/listaUsuario']);
       });
     }
   }

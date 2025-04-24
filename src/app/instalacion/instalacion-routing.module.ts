@@ -5,22 +5,28 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioInstalacionComponent } from './inicio-instalacion/inicio-instalacion.component';
 import { MenuInstalacionComponent } from './menu-instalacion/menu-instalacion.component';
 
-// Define las rutas del módulo Instalacion
+// Importa el guard
+import { loginGuard } from '../guards/login.guard';
+
 const routes: Routes = [
   {
-    path: '',  // Ruta principal de este módulo
-    component: InicioInstalacionComponent,  // El componente que se carga cuando se accede al módulo Instalacion
-    children: [  // Si tienes rutas hijas, las defines aquí
+    path: '',
+    component: InicioInstalacionComponent,
+    canActivate: [loginGuard],  // Protegemos el acceso al módulo
+    data: { requiredType: 'instalacion' },  // Solo usuarios de tipo "instalacion"
+    children: [
       {
-        path: 'menuInstalacion',  // Ruta para el menú de instalación
-        component: MenuInstalacionComponent
+        path: 'menuInstalacion',
+        component: MenuInstalacionComponent,
+        canActivate: [loginGuard],  // También protegemos esta ruta
+        data: { requiredType: 'instalacion' }  // Tipo de usuario requerido
       }
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],  // Usamos forChild para rutas específicas del módulo
-  exports: [RouterModule]  // Exporta el RouterModule para que las rutas sean accesibles
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class InstalacionRoutingModule { }
