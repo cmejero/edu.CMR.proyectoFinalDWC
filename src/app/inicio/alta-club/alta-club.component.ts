@@ -89,15 +89,23 @@ export class AltaClubComponent {
 
   modificarClub() {
     if (this.compararContrasenas()) {
-      if (this.password) {
+      // Solo asignar la nueva contraseña si se ha cambiado
+      if (this.password !== this.club.passwordClub) {
+        // Si las contraseñas son diferentes, asignamos la nueva contraseña
         this.club.passwordClub = this.password;
+      } else {
+        // Si las contraseñas son iguales, no modificamos la contraseña
+        console.log("La nueva contraseña es la misma que la actual. No se enviará.");
       }
-
+  
+      // Ver el objeto 'club' antes de enviarlo
+      console.log('Objeto club antes de la actualización:', this.club);
+  
       this.apiService.updateClub(`${this.id}`, this.club).subscribe({
         next: (response) => {
           console.log('Club actualizado correctamente', response);
           this._snackBar.open('Club actualizado correctamente', 'Ok');
-          this.router.navigate(['/listaClub']);
+          this.router.navigate(['/administrador/listaClub']);
         },
         error: (err) => {
           console.error('Error al actualizar club:', err);
@@ -106,6 +114,8 @@ export class AltaClubComponent {
       });
     }
   }
+  
+  
 
   onFileSelected(event: any) {
     const file = event.target.files[0];

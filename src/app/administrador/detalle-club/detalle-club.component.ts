@@ -39,7 +39,7 @@ export class DetalleClubComponent {
         next: (response) => {
           console.log('Club eliminado correctamente');
           this._snackBar.open('Club eliminado correctamente', 'Ok');
-          this.router.navigate(['/listaClub']);
+          this.router.navigate(['/administrador/listaClub']);
         },
         error: (err) => {
           console.error('Error al eliminar el club:', err);

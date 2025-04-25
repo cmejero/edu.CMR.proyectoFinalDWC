@@ -12,15 +12,16 @@ const routes: Routes = [
   {
     path: '',
     component: InicioInstalacionComponent,
-    canActivate: [loginGuard],  // Protegemos el acceso al módulo
-    data: { requiredType: 'instalacion' },  // Solo usuarios de tipo "instalacion"
     children: [
       {
         path: 'menuInstalacion',
-        component: MenuInstalacionComponent,
-        canActivate: [loginGuard],  // También protegemos esta ruta
-        data: { requiredType: 'instalacion' }  // Tipo de usuario requerido
-      }
+        component: MenuInstalacionComponent      
+      },
+      {
+        path: 'inicioInstalacion',
+        component: InicioInstalacionComponent      
+      },
+      {path: '', redirectTo: 'inicioInstalacion', pathMatch: 'full'},
     ]
   }
 ];

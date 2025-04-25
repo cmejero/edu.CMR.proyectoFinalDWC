@@ -16,60 +16,61 @@
               <td><label for="nombreClub" class="formularioLabel">Nombre
                   del Club</label> <input type="text"
                 style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
-                class="form-control" id="nombreClub" name="nombreClub" [ngModel]="club.nombreClub" required
-                required></td>
+                class="form-control" id="nombreClub" name="nombreClub" [(ngModel)]="club.nombreClub" required
+                required>
+              </td>
               <td><label for="abreviaturaClub" class="formularioLabel">Abreviatura</label>
                 <input type="text"
                 style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
                 class="form-control" id="abreviaturaClub"
-                name="abreviaturaClub" [ngModel]="club.abreviaturaClub" required></td>
+                name="abreviaturaClub" [(ngModel)]="club.abreviaturaClub" required></td>
             </tr>
             <tr>
               <td><label for="emailClub" class="formularioLabel">Correo
                   Electrónico</label> <input type="email"
                 style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
-                class="form-control" id="emailClub" name="emailClub" [ngModel]="club.emailClub" required></td>
+                class="form-control" id="emailClub" name="emailClub" [(ngModel)]="club.emailClub" required></td>
 
               <td><label for="telefonoClub" class="formularioLabel">Teléfono</label>
                 <input type="tel"
                 style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
                 class="form-control" id="telefonoClub" name="telefonoClub"
-                [ngModel]="club.telefonoClub" required></td>
+                [(ngModel)]="club.telefonoClub" required></td>
             </tr>
             <tr>
               <td><label for="paisClub" class="formularioLabel">País</label>
                 <input type="text"
                 style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
-                class="form-control" id="paisClub" name="paisClub" [ngModel]="club.paisClub" required>
+                class="form-control" id="paisClub" name="paisClub" [(ngModel)]="club.paisClub" required>
               </td>
               <td><label for="localidadClub" class="formularioLabel">Localidad</label>
                 <input type="text"
                 style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
                 class="form-control" id="localidadClub" name="localidadClub"
-                [ngModel]="club.localidadClub" required></td>
+                [(ngModel)]="club.localidadClub" required></td>
             </tr>
             <tr>
               <td><label for="passwordClub" class="formularioLabel">Contraseña</label>
                 <input type="password"
                 style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
-                class="form-control" id="passwordClub" name="passwordClub" [ngModel]="password"
+                class="form-control" id="passwordClub" name="passwordClub" [(ngModel)]="password"
                 required></td>
               <td><label for="repasswordClub" class="formularioLabel">Repetir
                   Contraseña</label> <input type="password"
                 style="font-size: 1vw; border: 1px solid #818181; height: 2.5vw;"
                 class="form-control" id="repasswordClub"
-                name="repasswordClub" [ngModel]="passwordRepetida" required></td>
+                name="repasswordClub" [(ngModel)]="passwordRepetida" required></td>
             </tr>
             <tr>
               <td><label for="imagenClub" class="formularioLabel">Escudo
                   del Club</label> <input type="file"
                 style="font-size: 1vw; border: 1px solid #818181; "
-                class="form-control" id="imagenClub" name="imagenClub" [ngModel]="club.logoClub" (change)="onFileSelected($event)">
+                class="form-control" id="imagenClub" name="imagenClub" [(ngModel)]="club.logoClub" (change)="onFileSelected($event)">
               </td>
               <td><label for="descripcionClub" class="formularioLabel">Descripción</label>
                 <textarea class="form-control"
                   style="font-size: 1vw; border: 1px solid #818181; border-bottom: 1px solid #818181; margin-bottom: 1vw;"
-                  id="descripcionClub" name="descripcionClub" [ngModel]="club.descripcionClub" rows="3"></textarea>
+                  id="descripcionClub" name="descripcionClub" [(ngModel)]="club.descripcionClub" rows="3"></textarea>
               </td>
             </tr>
 

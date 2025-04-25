@@ -39,7 +39,7 @@ export class DetalleInstalacionComponent {
         next: (response) => {
           console.log('Instalación eliminada correctamente');
           this._snackBar.open('Instalación eliminada correctamente', 'Ok');
-          this.router.navigate(['/listaInstalaciones']);
+          this.router.navigate(['/administrador/listaInstalacion']);
         },
         error: (err) => {
           console.error('Error al eliminar la instalación:', err);

@@ -47,7 +47,20 @@ export class AltaInstalacionComponent implements OnInit {
       this.apiService.getInstalacion(this.id).subscribe({
         next: (res) => {
           // Llenar los valores del formulario con la información de la instalación
-          this.instalacionForm.patchValue(res);
+          this.instalacionForm.patchValue({
+            ...res,
+            tipoDeCampo: [] // Evitamos conflictos con el patchValue
+          });
+          
+          // Limpiamos el FormArray actual
+          this.tipoDeCampo.clear();
+          
+          // Volvemos a cargar cada uno de los tipos de campo del backend
+          if (Array.isArray(res.tipoDeCampo)) {
+            res.tipoDeCampo.forEach((tipo: string) => {
+              this.tipoDeCampo.push(this.fb.control(tipo));
+            });
+          }
 
           // Si estamos editando una instalación existente, asegurarnos de no vaciar las contraseñas
           // Asegúrate de que las contraseñas actuales se muestren en los campos, si estás editando
@@ -136,7 +149,7 @@ export class AltaInstalacionComponent implements OnInit {
       next: (response) => {
         console.log('Instalación actualizada correctamente', response);
         this._snackBar.open('Instalación actualizada correctamente', 'Ok');
-        this.router.navigate(['/listaInstalacion']);
+        this.router.navigate(['/administrador/listaInstalacion']);
       },
       error: (err) => {
         console.error('Error al actualizar instalación:', err);

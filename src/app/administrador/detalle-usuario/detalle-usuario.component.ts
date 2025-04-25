@@ -36,7 +36,7 @@ export class DetalleUsuarioComponent implements OnInit  {
         next: (response) => {
           console.log('Usuario eliminado correctamente');
           this._snackBar.open('Usuario eliminado correctamente', 'Ok');
-          this.router.navigate(['/listaUsuario']);  // Redirige a la lista de usuarios
+          this.router.navigate(['/administrador/listaUsuario']);  // Redirige a la lista de usuarios
         },
         error: (err) => {
           console.error('Error al eliminar el usuario:', err);

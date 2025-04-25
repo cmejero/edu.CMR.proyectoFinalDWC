@@ -11,14 +11,16 @@ const routes: Routes = [
   {
     path: '',  // Ruta principal del módulo Club
     component: InicioClubComponent,
-    canActivate: [loginGuard],  // Protege el acceso con el guard
-    data: { requiredType: 'club' },  // Solo tipo CLUB puede entrar
     children: [
       {
         path: 'menuClub',
         component: MenuClubComponent
+      }, {
+        path: 'inicioClub',
+        component: InicioClubComponent
       },
-      // Aquí puedes agregar más rutas hijas protegidas
+      {path: '', redirectTo: 'inicioClub', pathMatch: 'full'},
+      
     ]
   }
 ];

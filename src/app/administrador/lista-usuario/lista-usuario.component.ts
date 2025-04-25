@@ -30,15 +30,22 @@ export class ListaUsuarioComponent {
   }
 
   filtroBusquedaUsuario() {
-    this.paginaActualUsuario = 0;
+    this.paginaActualUsuario = 0;  // Resetea la página a la primera
+  
+    // Filtro por nombre, email o teléfono
     const termino = this.terminoBusquedaUsuario.toLowerCase();
     this.usuariosFiltrados = this.usuario.filter(usuario =>
-      usuario.nombreCompletoUsuario?.toLowerCase().includes(termino) ||
-      usuario.emailUsuario?.toLowerCase().includes(termino) ||
-      usuario.telefonoUsuario?.toLowerCase().includes(termino)
+      usuario.idUsuario?.toString().includes(termino) ||
+      usuario.emailUsuario?.toLowerCase().includes(termino) 
     );
+  
+    // Actualiza los datos en el dataSource
+    this.dataSourceUsuarios.data = this.usuariosFiltrados;
+  
+    // Aplica la paginación con los datos filtrados
     this.aplicarPaginacionUsuario();
   }
+  
 
   cambioPaginaUsuario(event: any) {
     this.paginaActualUsuario = event.pageIndex;

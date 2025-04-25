@@ -32,9 +32,8 @@ export class ListaClubComponent {
   filtroBusqueda() {
     this.paginaActual = 0; // Reinicia a la primera página al filtrar
     this.clubesFiltrados = this.club.filter(club =>
-      club.nombreClub.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
       club.emailClub.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
-      club.telefonoClub.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+      club.idClub.toString().includes(this.terminoBusqueda.toLowerCase()) 
     );
     this.aplicarPaginacion();
   }

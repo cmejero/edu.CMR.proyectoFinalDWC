@@ -15,6 +15,8 @@ import { MenuAdminComponent } from './menu-admin/menu-admin.component';
 import { loginGuard } from '../guards/login.guard';
 import { AdministradorComponent } from './administrador.component';
 import { AltaUsuarioComponent } from '../inicio/alta-usuario/alta-usuario.component';
+import { AltaClubComponent } from '../inicio/alta-club/alta-club.component';
+import { AltaInstalacionComponent } from '../inicio/alta-instalacion/alta-instalacion.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,8 @@ const routes: Routes = [
       { path: 'detalleClub/:id', component: DetalleClubComponent },
       { path: 'detalleInstalacion/:id', component: DetalleInstalacionComponent },
       { path: 'modificarUsuario/:id', component: AltaUsuarioComponent },
+      { path: 'modificarClub/:id', component: AltaClubComponent },
+      { path: 'modificarInstalacion/:id', component: AltaInstalacionComponent },
 
       {path: '', redirectTo: 'inicioAdmin', pathMatch: 'full'}, // Redirige a inicioAdmin por defecto
     ]

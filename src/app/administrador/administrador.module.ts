@@ -12,6 +12,7 @@ import { ListaInstalacionComponent } from './lista-instalacion/lista-instalacion
 import { ListaUsuarioComponent } from './lista-usuario/lista-usuario.component';
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
 import { MaterialModule } from '../shared/material/material.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -32,7 +33,8 @@ import { MaterialModule } from '../shared/material/material.module';
   imports: [
     CommonModule,
     AdministradorRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
 
 
 

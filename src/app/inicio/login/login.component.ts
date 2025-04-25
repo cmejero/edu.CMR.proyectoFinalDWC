@@ -51,13 +51,13 @@ export class LoginComponent {
 
         switch (tipoUsuario) {
           case 'jugador':
-            this.router.navigate(['/inicioJugador']);
+            this.router.navigate(['/jugador']);
             break;
           case 'club':
-            this.router.navigate(['/inicioClub']);
+            this.router.navigate(['/club']);
             break;
           case 'instalacion':
-            this.router.navigate(['/inicioInstalacion']);
+            this.router.navigate(['/instalacion']);
             break;
           case 'administrador':
             this.router.navigate(['/administrador']);

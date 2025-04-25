@@ -32,10 +32,9 @@ export class ListaInstalacionComponent {
 
   filtroBusqueda() {
     this.paginaActual = 0; // Reinicia a la primera página al filtrar
-    this.instalacionesFiltradas = this.instalacion.filter(instalacion =>
-      instalacion.nombreInstalacion.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
-      instalacion.emailInstalacion.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
-      instalacion.telefonoInstalacion.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+    this.instalacionesFiltradas = this.instalacion.filter(instalacion =>     
+      instalacion.idInstalacion.toString().includes(this.terminoBusqueda.toLowerCase()) ||
+      instalacion.emailInstalacion.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) 
     );
     this.aplicarPaginacion();
   }

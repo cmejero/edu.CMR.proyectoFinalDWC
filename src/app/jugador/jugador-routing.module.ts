@@ -10,15 +10,17 @@ const routes: Routes = [
   {
     path: '',
     component: InicioJugadorComponent,
-    canActivate: [loginGuard],
-    data: { requiredType: 'jugador' },
     children: [
       {
         path: 'menuJugador',
-        component: MenuJugadorComponent,
-        canActivate: [loginGuard],
-        data: { requiredType: 'JUGADOR' }
-      }
+        component: MenuJugadorComponent
+      },
+      {
+        path: 'inicioJugador',
+        component: InicioJugadorComponent
+      },
+      {path: '', redirectTo: 'inicioJugador', pathMatch: 'full'},
+    
     ]
   }
 ];
